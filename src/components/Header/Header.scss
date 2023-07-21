@@ -1,0 +1,33 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18%;
+  padding: 10px 0 12px;
+  font-size: 16px;
+  color: #8e8e8e;
+  border-bottom: 1px solid rgba(142, 142, 142, 0.5);
+
+  .left-side,
+  .right-side {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-right: 16px;
+    }
+
+    a {
+      display: flex;
+      margin-right: 8px;
+
+      img {
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
