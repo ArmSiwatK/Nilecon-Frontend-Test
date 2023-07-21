@@ -1,6 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+@font-face {
+  font-family: "Mongolian Baiti Regular";
+  src: url("./fonts/monbaiti.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
 
-$font-family: Kanit, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+$font-family: "Mongolian Baiti Regular", Inter, system-ui, Avenir, Helvetica,
+  Arial, sans-serif;
 $primary-color: #646cff;
 $secondary-color: #535bf2;
 $background-color: #242424;
@@ -38,6 +44,10 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #1f2022;
+  background-image: url("./images/bg-page.jpg");
+  background-repeat: repeat-x;
+  background-position: center top;
 }
 
 h1 {
