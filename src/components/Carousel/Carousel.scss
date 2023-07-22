@@ -1,4 +1,4 @@
-$button-position: 435px;
+$button-position: 64px;
 
 .carousel {
   display: flex;
@@ -11,37 +11,37 @@ $button-position: 435px;
     width: 1024px;
     box-shadow: 0 0 30px 15px rgba(0, 0, 0, 0.5);
   }
-
-  .carousel-control {
-    a {
-      position: absolute;
-      top: 135px;
-      transition: opacity 0.3s ease;
-
-      &:hover {
-        opacity: 0.6;
-      }
-    }
-
-    .button-previous {
-      left: $button-position;
-    }
-
-    .button-next {
-      right: $button-position;
-    }
-  }
 }
 
 .react-multi-carousel-list {
   margin: 0 390px;
-}
 
-.react-multi-carousel-item {
-  display: flex;
-  justify-content: center;
+  .react-multi-carousel-item {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
 
-  img {
-    width: 1024px;
+    img {
+      width: 1024px;
+      box-shadow: 0 0 30px 15px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .custom-arrow {
+    position: absolute;
+    top: 150px;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &.left {
+      left: $button-position;
+    }
+
+    &.right {
+      right: $button-position;
+    }
   }
 }
