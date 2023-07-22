@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Logo from "./components/Logo/Logo";
 import Navbar from "./components/Navbar/Navbar";
 import BannerCarousel from "./components/Carousel/Carousel";
+import FeatureShows from "./components/FeatureShows/FeatureShows";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Logo />
       <Navbar />
       <BannerCarousel />
+      <FeatureShows />
     </>
   )
 }
