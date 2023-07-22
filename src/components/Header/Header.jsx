@@ -7,16 +7,16 @@ const Header = () => {
             <div className="left-side">
                 <span>Follow us on</span>
                 <a href="https://www.facebook.com/embassycineplex" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-top-fb.png" alt="Facebook" />
+                    <img src="./images/icon-fb.png" alt="Facebook" />
                 </a>
                 <a href="https://twitter.com/embassycineplex" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-top-tw.png" alt="Twitter" />
+                    <img src="./images/icon-tw.png" alt="Twitter" />
                 </a>
                 <a href="https://www.instagram.com/embassyscreens" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-top-ig.png" alt="Instagram" />
+                    <img src="./images/icon-ig.png" alt="Instagram" />
                 </a>
                 <a href="https://www.youtube.com/user/embassycineplex" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-top-yt.png" alt="YouTube" />
+                    <img src="./images/icon-yt.png" alt="YouTube" />
                 </a>
             </div>
             <div className="right-side">
