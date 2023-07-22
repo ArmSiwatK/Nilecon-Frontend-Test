@@ -1,31 +1,9 @@
 import React, { useState } from 'react';
+import carouselData from '../../assets/CarouselData.json';
 import './Carousel.scss';
 
 const Carousel = () => {
     const [currentImage, setCurrentImage] = useState(0);
-
-    const carouselData = [
-        {
-            imageSrc: './banners/banner1.jpg',
-            url: 'https://www.embassycineplex.com/promotion/18/Central-The-Black-&-Black-card-holders-eligible-for-50-discount-',
-        },
-        {
-            imageSrc: './banners/banner2.jpg',
-            url: '',
-        },
-        {
-            imageSrc: './banners/banner3.jpg',
-            url: '',
-        },
-        {
-            imageSrc: './banners/banner4.jpg',
-            url: '',
-        },
-        {
-            imageSrc: './banners/banner5.jpg',
-            url: '',
-        },
-    ];
 
     const handleNext = () => {
         setCurrentImage((prevImage) => (prevImage + 1) % carouselData.length);
