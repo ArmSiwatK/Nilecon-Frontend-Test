@@ -32,3 +32,16 @@ $button-position: 435px;
     }
   }
 }
+
+.react-multi-carousel-list {
+  margin: 0 390px;
+}
+
+.react-multi-carousel-item {
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 1024px;
+  }
+}

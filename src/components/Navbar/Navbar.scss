@@ -62,6 +62,7 @@ $grey-border: 1px solid rgba(142, 142, 142, 0.35);
       top: 38px;
       right: 0;
       transition: color 0.5s ease-out;
+      z-index: 1;
 
       &:hover {
         color: #c1ad7f;

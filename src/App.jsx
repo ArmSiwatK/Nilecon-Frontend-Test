@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header/Header";
 import Logo from "./components/Logo/Logo";
 import Navbar from "./components/Navbar/Navbar";
-import Carousel from "./components/Carousel/Carousel";
+import BannerCarousel from "./components/Carousel/Carousel";
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Logo />
       <Navbar />
-      <Carousel />
+      <BannerCarousel />
     </>
   )
 }
