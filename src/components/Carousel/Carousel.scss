@@ -1,35 +1,23 @@
-$button-position: 64px;
-
-.carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
-  position: relative;
-
-  .banner {
-    width: 1024px;
-    box-shadow: 0 0 30px 15px rgba(0, 0, 0, 0.5);
-  }
-}
-
 .react-multi-carousel-list {
-  margin: 0 390px;
+  margin: 0 auto;
+  position: relative;
+  width: 1024px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
 
   .react-multi-carousel-item {
     display: flex;
     justify-content: center;
-    padding: 20px 0;
 
     img {
-      width: 1024px;
-      box-shadow: 0 0 30px 15px rgba(0, 0, 0, 0.5);
+      width: 100%;
     }
   }
 
   .custom-arrow {
     position: absolute;
-    top: 150px;
+    top: 50%;
+    transform: translateY(-50%);
     transition: opacity 0.3s ease;
 
     &:hover {
@@ -37,11 +25,11 @@ $button-position: 64px;
     }
 
     &.left {
-      left: $button-position;
+      left: 1%;
     }
 
     &.right {
-      right: $button-position;
+      right: 1%;
     }
   }
 }
