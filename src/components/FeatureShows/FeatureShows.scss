@@ -15,67 +15,74 @@
     margin: 24px 0px 6px;
   }
 
-  .feature-shows-container {
+  .feature-shows-list {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 
-    .feature-show-block {
+    .feature-shows-container {
       display: flex;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 360px;
 
-      .movie-cover-link {
-        img {
-          width: 140px;
-          height: 210px;
-        }
-      }
-
-      .movie-info {
+      .feature-show-block {
         display: flex;
-        flex-direction: column;
-        gap: 8px;
+        gap: 20px;
 
-        .movie-name {
-          font-size: 24px;
-          color: #f1e3c2;
-        }
-
-        .movie-time {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-
-          .movie-length {
-            font-size: 18px;
-            color: #8e8e8e;
-          }
-        }
-
-        .movie-info-icons {
-          display: flex;
-          gap: 8px;
-
+        .movie-cover-link {
           img {
-            width: 40px;
+            width: 140px;
+            height: 210px;
+          }
+        }
+
+        .movie-info {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          .movie-name {
+            font-size: 24px;
+            color: #f1e3c2;
+          }
+
+          .movie-time {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .movie-length {
+              font-size: 18px;
+              color: #8e8e8e;
+            }
+          }
+
+          .movie-info-icons {
+            display: flex;
+            gap: 8px;
+
+            img {
+              width: 40px;
+            }
           }
         }
       }
-    }
 
-    .screen-time-container {
-      display: flex;
-      color: white;
+      .screen-time-container {
+        display: flex;
+        color: white;
 
-      #past {
-        color: rgb(224, 16, 16);
-      }
+        #past {
+          color: rgb(224, 16, 16);
+        }
 
-      #current {
-        color: green;
-      }
+        #current {
+          color: green;
+        }
 
-      #future {
-        color: blue;
+        #future {
+          color: blue;
+        }
       }
     }
   }
