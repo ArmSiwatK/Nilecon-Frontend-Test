@@ -1,0 +1,51 @@
+{
+  "movieName": "Barbie",
+  "movieCover": "./images/movie-cover.jpg",
+  "movieLength": "114",
+  "movieRating": "General",
+  "movieType": "2D",
+  "movieAudio": "Original",
+  "movieSubtitles": "Thai",
+  "screenTime": [
+    {
+      "time": "11:30",
+      "hall": "1"
+    },
+    {
+      "time": "12:30",
+      "hall": "3"
+    },
+    {
+      "time": "14:00",
+      "hall": "1"
+    },
+    {
+      "time": "15:00",
+      "hall": "3"
+    },
+    {
+      "time": "16:30",
+      "hall": "1"
+    },
+    {
+      "time": "17:30",
+      "hall": "3"
+    },
+    {
+      "time": "19:00",
+      "hall": "1"
+    },
+    {
+      "time": "20:00",
+      "hall": "3"
+    },
+    {
+      "time": "21:30",
+      "hall": "1"
+    },
+    {
+      "time": "22:30",
+      "hall": "3"
+    }
+  ]
+}

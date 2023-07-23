@@ -1,12 +1,82 @@
-.feature-shows-title {
+.feature-shows {
   display: flex;
-  justify-content: center;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 22px;
-  color: #c1ad80;
-  background-image: url("./images/today-show.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  margin: 24px 0px 6px;
+  flex-direction: column;
+
+  .feature-shows-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #c1ad80;
+    background-image: url("./images/today-show.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 24px 0px 6px;
+  }
+
+  .feature-shows-container {
+    display: flex;
+    justify-content: space-between;
+
+    .feature-show-block {
+      display: flex;
+      gap: 20px;
+
+      .movie-cover-link {
+        img {
+          width: 140px;
+          height: 210px;
+        }
+      }
+
+      .movie-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .movie-name {
+          font-size: 24px;
+          color: #f1e3c2;
+        }
+
+        .movie-time {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .movie-length {
+            font-size: 18px;
+            color: #8e8e8e;
+          }
+        }
+
+        .movie-info-icons {
+          display: flex;
+          gap: 8px;
+
+          img {
+            width: 40px;
+          }
+        }
+      }
+    }
+
+    .screen-time-container {
+      display: flex;
+      color: white;
+
+      #past {
+        color: rgb(224, 16, 16);
+      }
+
+      #current {
+        color: green;
+      }
+
+      #future {
+        color: blue;
+      }
+    }
+  }
 }
