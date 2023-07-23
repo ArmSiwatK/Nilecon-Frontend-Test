@@ -4,6 +4,7 @@ import Logo from "./components/Logo/Logo";
 import Navbar from "./components/Navbar/Navbar";
 import BannerCarousel from "./components/Carousel/Carousel";
 import FeatureShows from "./components/FeatureShows/FeatureShows";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       <BannerCarousel />
       <FeatureShows />
+      <Footer />
     </>
   )
 }

@@ -4,22 +4,22 @@ import "./Header.scss";
 const Header = () => {
     return (
         <header>
-            <div className="left-side">
+            <div className="header-left">
                 <span>Follow us on</span>
                 <a href="https://www.facebook.com/embassycineplex" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-fb.png" alt="Facebook" />
+                    <img src="./icons/icon-fb.png" alt="Facebook" />
                 </a>
                 <a href="https://twitter.com/embassycineplex" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-tw.png" alt="Twitter" />
+                    <img src="./icons/icon-tw.png" alt="Twitter" />
                 </a>
                 <a href="https://www.instagram.com/embassyscreens" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-ig.png" alt="Instagram" />
+                    <img src="./icons/icon-ig.png" alt="Instagram" />
                 </a>
                 <a href="https://www.youtube.com/user/embassycineplex" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/icon-yt.png" alt="YouTube" />
+                    <img src="./icons/icon-yt.png" alt="YouTube" />
                 </a>
             </div>
-            <div className="right-side">
+            <div className="header-right">
                 <span>Get Embassy Screens app on</span>
                 <a href="https://apps.apple.com/app/embassy-screens/id882209348" target="_blank" rel="noopener noreferrer">
                     <img src="./images/download-appstore.png" alt="App Store" />
