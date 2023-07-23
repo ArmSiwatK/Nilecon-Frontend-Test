@@ -5,6 +5,7 @@ import './FeatureShows.scss';
 const FeatureShows = () => {
     const currentTime = new Date();
     const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
+    let currentScreenTimeIndex = null;
 
     const isScreenTimePast = (screenTime) => {
         const [hours, minutes] = screenTime.split(':').map(Number);
@@ -36,8 +37,11 @@ const FeatureShows = () => {
                     <div className="screen-time-container">
                         {movieData.screenTime.map((screen, index) => {
                             const boxId = isScreenTimePast(screen.time) ? 'past' : 'future';
+                            if (boxId === 'future' && currentScreenTimeIndex === null) {
+                                currentScreenTimeIndex = index;
+                            }
                             return (
-                                <div key={index} className="screen-time-box" id={`${boxId}`}>
+                                <div key={index} className="screen-time-box" id={currentScreenTimeIndex === index ? 'current' : boxId}>
                                     <div className="hall-type">{`Hall ${screen.hall}`}</div>
                                     <div className="screen-time">{screen.time}</div>
                                     <div className="movie-type">{movieData.movieType}</div>

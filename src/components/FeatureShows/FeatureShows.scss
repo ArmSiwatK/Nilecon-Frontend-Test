@@ -23,7 +23,7 @@
     .feature-shows-container {
       display: flex;
       justify-content: space-between;
-      gap: 360px;
+      gap: 200px;
       background-image: url("./images/line-bottom-show-today.png");
       background-repeat: no-repeat;
       background-position: center bottom;
@@ -73,18 +73,42 @@
 
       .screen-time-container {
         display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
         color: white;
+        gap: 6px;
+        width: 600px;
+
+        .screen-time-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .screen-time {
+            background-repeat: no-repeat;
+            background-position: center;
+            font-size: 20px;
+            padding: 15px 20px;
+          }
+        }
 
         #past {
-          color: rgb(224, 16, 16);
+          .screen-time {
+            background-image: url("./images/time-past.png");
+          }
         }
 
         #current {
-          color: green;
+          .screen-time {
+            background-image: url("./images/time-present.png");
+          }
         }
 
         #future {
-          color: blue;
+          .screen-time {
+            background-image: url("./images/time-future.png");
+          }
         }
       }
     }
