@@ -34,6 +34,8 @@ const BannerCarousel = () => {
             infinite={true}
             customLeftArrow={<CustomLeftArrow />}
             customRightArrow={<CustomRightArrow />}
+            autoPlay={true}
+            autoPlaySpeed={4000}
         >
             {carouselData.map((item, index) => (
                 item.url ? (
