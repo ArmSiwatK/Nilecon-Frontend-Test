@@ -24,6 +24,9 @@
       display: flex;
       justify-content: space-between;
       gap: 360px;
+      background-image: url("./images/line-bottom-show-today.png");
+      background-repeat: no-repeat;
+      background-position: center bottom;
 
       .feature-show-block {
         display: flex;
