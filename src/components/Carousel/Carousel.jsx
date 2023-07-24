@@ -7,7 +7,7 @@ import './Carousel.scss';
 const BannerCarousel = () => {
     const responsive = {
         desktop: {
-            breakpoint: { max: 3000, min: 1024 },
+            breakpoint: { max: 4096, min: 0 },
             items: 1
         }
     };
