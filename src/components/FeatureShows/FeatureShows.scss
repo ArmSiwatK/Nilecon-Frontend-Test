@@ -27,6 +27,7 @@
       background-image: url("./images/line-bottom-show-today.png");
       background-repeat: no-repeat;
       background-position: center bottom;
+      padding: 20px 0 50px;
 
       .feature-show-block {
         display: flex;
@@ -77,13 +78,28 @@
         align-items: center;
         flex-wrap: wrap;
         color: white;
-        gap: 6px;
+        gap: 2px;
         width: 600px;
+        position: relative;
+        top: 30px;
 
         .screen-time-box {
           display: flex;
           flex-direction: column;
           align-items: center;
+          cursor: default;
+          position: relative;
+          transition: opacity 0.3s ease;
+          padding-bottom: 30px;
+
+          .hall-type {
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            width: 50px;
+            height: 36px;
+            top: -30px;
+          }
 
           .screen-time {
             background-repeat: no-repeat;
@@ -91,23 +107,42 @@
             font-size: 20px;
             padding: 15px 20px;
           }
+
+          .movie-type {
+            color: #b0b0b0;
+          }
+
+          &:hover {
+            opacity: 0.5;
+          }
         }
 
         #past {
+          .hall-type {
+            opacity: 0.5;
+          }
+
           .screen-time {
             background-image: url("./images/time-past.png");
+            color: #5f5f5f;
+          }
+
+          .movie-type {
+            color: #5f5f5f;
           }
         }
 
         #current {
           .screen-time {
             background-image: url("./images/time-present.png");
+            color: black;
           }
         }
 
         #future {
           .screen-time {
             background-image: url("./images/time-future.png");
+            color: #f1e3c2;
           }
         }
       }

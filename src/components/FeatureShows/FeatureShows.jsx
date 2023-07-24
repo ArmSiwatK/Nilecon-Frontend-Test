@@ -37,13 +37,21 @@ const FeatureShows = () => {
                     <div className="screen-time-container">
                         {movieData.screenTime.map((screen, index) => {
                             const boxId = isScreenTimePast(screen.time) ? 'past' : 'future';
+                            const hallTypeStyle = {
+                                backgroundImage: `url(./images/hilight-hall-${screen.hall}.png)`,
+                            };
+
+
                             if (boxId === 'future' && currentScreenTimeIndex === null) {
                                 currentScreenTimeIndex = index;
                             }
+
                             return (
                                 <div key={index} className="screen-time-box" id={currentScreenTimeIndex === index ? 'current' : boxId}>
-                                    <div className="hall-type">{`Hall ${screen.hall}`}</div>
-                                    <div className="screen-time">{screen.time}</div>
+                                    <div className="hall-type" style={hallTypeStyle}></div>
+                                    <a>
+                                        <div className="screen-time">{screen.time}</div>
+                                    </a>
                                     <div className="movie-type">{movieData.movieType}</div>
                                 </div>
                             );
