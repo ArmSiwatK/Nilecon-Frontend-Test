@@ -1,18 +1,3 @@
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .feature-shows {
   display: flex;
   flex-direction: column;
@@ -160,21 +145,19 @@
             color: #f1e3c2;
           }
         }
-
-        .message-box {
-          position: absolute;
-          bottom: 100px;
-          left: 0;
-          padding: 10px;
-          width: 200px;
-          pointer-events: none;
-          z-index: 1;
-          font-size: 15px;
-          color: white;
-          opacity: 0;
-          animation: fadeInOut 2s infinite;
-        }
       }
     }
+  }
+
+  #message-box {
+    font-size: 15px;
+    padding: 4px 8px;
+    color: black;
+    background-color: #f1e3c2;
+    transition: opacity 1s ease;
+  }
+
+  #message-box.show {
+    opacity: 1;
   }
 }
