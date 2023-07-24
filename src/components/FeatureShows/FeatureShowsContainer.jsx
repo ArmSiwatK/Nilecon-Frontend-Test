@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeIndex }) => {
+    const [currentHoverIndex, setCurrentHoverIndex] = useState(null);
+
+    const handleMouseEnter = (index) => {
+        setCurrentHoverIndex(index);
+    };
+
+    const handleMouseLeave = () => {
+        setCurrentHoverIndex(null);
+    };
+
     return (
         <div className="feature-show-container">
             <div className="feature-shows-container">
@@ -33,12 +43,24 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                         }
 
                         return (
-                            <div key={index} className="screen-time-box" id={currentScreenTimeIndex === index ? 'current' : boxId}>
+                            <div
+                                key={index}
+                                className="screen-time-box"
+                                id={currentScreenTimeIndex === index ? 'current' : boxId}
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                            >
                                 <div className="hall-type" style={hallTypeStyle}></div>
                                 <a>
                                     <div className="screen-time">{screen.time}</div>
                                 </a>
                                 <div className="movie-type">{movieData.movieType}</div>
+
+                                {currentHoverIndex === index && (
+                                    <div className="message-box">
+                                        Audio: {movieData.movieAudio} / Subtitles: {movieData.movieSubtitles}
+                                    </div>
+                                )}
                             </div>
                         );
                     })}

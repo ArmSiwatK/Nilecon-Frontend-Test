@@ -1,3 +1,18 @@
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .feature-shows {
   display: flex;
   flex-direction: column;
@@ -89,7 +104,7 @@
           align-items: center;
           cursor: default;
           position: relative;
-          transition: opacity 0.3s ease;
+          transition: opacity 0.5s ease;
           padding-bottom: 30px;
 
           .hall-type {
@@ -144,6 +159,20 @@
             background-image: url("./images/time-future.png");
             color: #f1e3c2;
           }
+        }
+
+        .message-box {
+          position: absolute;
+          bottom: 100px;
+          left: 0;
+          padding: 10px;
+          width: 200px;
+          pointer-events: none;
+          z-index: 1;
+          font-size: 15px;
+          color: white;
+          opacity: 0;
+          animation: fadeInOut 2s infinite;
         }
       }
     }
