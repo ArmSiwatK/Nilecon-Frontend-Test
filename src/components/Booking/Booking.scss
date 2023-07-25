@@ -22,31 +22,62 @@
 
   .booking-info {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    gap: 30px;
     width: 100%;
 
     .movie-cover {
       background-image: url("./images/movie-cover-background.png");
       background-repeat: no-repeat;
-      width: 100px;
+      width: 135px;
     }
 
-    .movie-name {
-      font-size: 24px;
-      color: #f1e3c2;
-    }
-
-    .movie-info-icons {
+    .movie-info {
       display: flex;
-      gap: 8px;
+      flex-direction: column;
+      gap: 30px;
 
-      img {
-        width: 40px;
+      .movie-name {
+        font-size: 24px;
+        color: #f1e3c2;
       }
-    }
 
-    .movie-type {
-      color: #b0b0b0;
+      .movie-info-icons {
+        display: flex;
+        gap: 8px;
+
+        img {
+          width: 40px;
+        }
+
+        .movie-type {
+          color: #b0b0b0;
+        }
+      }
+
+      .movie-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        text-align: center;
+        font-size: 18px;
+        color: #f1e3c2;
+
+        .movie-details-cell {
+          padding: 12px 60px;
+          background-color: #101010;
+          border: 1px solid #3e3e3e;
+
+          &:not(:last-child) {
+            border-right: none;
+          }
+
+          span {
+            color: #8e8e8e;
+            margin-right: 5px;
+          }
+        }
+      }
     }
   }
 }
