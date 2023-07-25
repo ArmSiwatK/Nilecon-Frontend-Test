@@ -13,7 +13,7 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                         <div className="movie-name">{movieData.movieName.toUpperCase()}</div>
                         <div className="movie-time">
                             <img className="clock-icon" src="./images/clock.png" />
-                            <div className="movie-length">{movieData.movieLength} MIN</div>
+                            <div className="movie-length">{movieData.movieLength} Min</div>
                         </div>
                         <div className="movie-info-icons">
                             <img className="movie-rating" src="./images/rate-general.png" />
