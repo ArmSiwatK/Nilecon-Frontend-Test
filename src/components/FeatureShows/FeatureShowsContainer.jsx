@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
 
 const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeIndex }) => {
@@ -38,7 +39,7 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                                 data-tooltip-id="message-box"
                                 data-tooltip-content={`Audio: ${movieData.movieAudio} / Subtitles: ${movieData.movieSubtitles}`}
                             >
-                                <div
+                                <NavLink to="/select-ticket"
                                     key={index}
                                     className="screen-time-box"
                                     id={currentScreenTimeIndex === index ? 'current' : boxId}
@@ -48,7 +49,7 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                                         <div className="screen-time">{screen.time}</div>
                                     </a>
                                     <div className="movie-type">{movieData.movieType}</div>
-                                </div>
+                                </NavLink>
                             </div>
                         );
                     })}

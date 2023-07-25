@@ -20,7 +20,7 @@ const Logo = () => {
     return (
         !isMobile && (
             <div className="logo-wrapper">
-                <a className="logo" href="https://www.embassycineplex.com/home">
+                <a className="logo" href="https://www.embassycineplex.com/home" target="_blank" rel="noopener noreferrer">
                     <img src="./images/logo.png" alt="Logo" />
                 </a>
             </div>

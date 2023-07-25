@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
+import NavItems from '../../assets/NavItems.json';
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -15,17 +17,16 @@ const Navbar = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
-    const navItems = ['TODAY', 'ADVANCE BOOKING', 'COMING SOON', 'INFORMATION', 'PROMOTION', 'EVENT & ACTIVITY'];
-
     return (
         <div className="navbar">
-            {navItems.map((item) => (
-                <div
-                    key={item}
+            {NavItems.map((item) => (
+                <NavLink
+                    to={item.path}
+                    key={item.displayName}
                     className="nav-item"
                 >
-                    {item}
-                </div>
+                    {item.displayName}
+                </NavLink>
             ))}
             <div className={`language-dropdown ${dropdownOpen ? 'open' : ''}`} onClick={handleDropdownClick}>
                 <span className="selected-language">{language}</span>
