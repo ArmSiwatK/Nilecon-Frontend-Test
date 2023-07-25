@@ -1,0 +1,52 @@
+.booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1024px;
+  margin: auto;
+
+  .back-button {
+    width: 100%;
+    margin: 30px;
+    border-bottom: solid 1px #7f6e47;
+
+    input {
+      padding: 12px 0;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .booking-info {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .movie-cover {
+      background-image: url("./images/movie-cover-background.png");
+      background-repeat: no-repeat;
+      width: 100px;
+    }
+
+    .movie-name {
+      font-size: 24px;
+      color: #f1e3c2;
+    }
+
+    .movie-info-icons {
+      display: flex;
+      gap: 8px;
+
+      img {
+        width: 40px;
+      }
+    }
+
+    .movie-type {
+      color: #b0b0b0;
+    }
+  }
+}
