@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
+import AlertBox from './AlertBox';
 
 const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeIndex }) => {
+    const [showAlert, setShowAlert] = useState(false);
     const currentTime = new Date();
 
     const canNavigate = (screenTime) => {
@@ -48,6 +50,7 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
 
                         return (
                             <div
+                                key={index}
                                 data-tooltip-id="message-box"
                                 data-tooltip-content={`Audio: ${movieData.movieAudio} / Subtitles: ${movieData.movieSubtitles}`}
                             >
@@ -57,15 +60,14 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                                     className="screen-time-box"
                                     id={currentScreenTimeIndex === index ? 'current' : boxId}
                                     onClick={(event) => {
-                                        if (!shouldNavigate) {
+                                        if (!shouldNavigate && !isScreenTimePast(screen.time)) {
                                             event.preventDefault();
+                                            setShowAlert(true);
                                         }
                                     }}
                                 >
                                     <div className="hall-type" style={hallTypeStyle}></div>
-                                    <a>
-                                        <div className="screen-time">{screen.time}</div>
-                                    </a>
+                                    <div className="screen-time">{screen.time}</div>
                                     <div className="movie-type">{movieData.movieType}</div>
                                 </NavLink>
                             </div>
@@ -74,6 +76,14 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                 </div>
             </div>
             <Tooltip id="message-box" />
+
+            {showAlert && (
+                <AlertBox
+                    message1="You may only reserve/buy tickets at least 60 minutes before showtime."
+                    message2="Please call 02-160-5999 for more information."
+                    onClose={() => setShowAlert(false)}
+                />
+            )}
         </div>
     );
 };
