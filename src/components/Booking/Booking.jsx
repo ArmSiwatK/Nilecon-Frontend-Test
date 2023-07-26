@@ -6,9 +6,13 @@ import Halls from '../../assets/Halls.json';
 import './Booking.scss';
 
 const Booking = () => {
-    const [currentStep, setCurrentStep] = useState(1);
-
     const today = new Date();
+    const lastScreenTime = MovieData.screenTime[MovieData.screenTime.length - 1];
+    const hallData = Halls.find((hall) => hall.number === lastScreenTime.hall);
+    const seatTypes = hallData ? hallData.seatTypes : [];
+
+    const [currentStep, setCurrentStep] = useState(1);
+    const [seatAmounts, setSeatAmounts] = useState(seatTypes.map(() => 1));
 
     const formattedDate = () => {
         const getMonthName = (monthIndex) => {
@@ -26,11 +30,12 @@ const Booking = () => {
         window.history.back();
     };
 
-    const lastScreenTime = MovieData.screenTime[MovieData.screenTime.length - 1];
-
-    const hallNumber = lastScreenTime.hall;
-    const hallData = Halls.find((hall) => hall.number === hallNumber);
-    const seatTypes = hallData ? hallData.seatTypes : [];
+    const handleSeatAmountChange = (index, amount) => {
+        const newSeatAmounts = [...seatAmounts];
+        const newAmount = Math.min(Math.max(newSeatAmounts[index] + amount, 0), 3);
+        newSeatAmounts[index] = newAmount;
+        setSeatAmounts(newSeatAmounts);
+    };
 
     return (
         <div className="booking-container">
@@ -65,11 +70,24 @@ const Booking = () => {
 
                     return (
                         <div key={index} className="seat-info">
-                            <img src={seatData.image} alt={seatData.name} />
+                            <img className="seat-image" src={seatData.image} alt={seatData.name} />
                             <div className="seat-name">
                                 {`${seatData.name} (${seatData.seats} Seats)`}
                             </div>
                             <div className="seat-price">{`${formattedPrice} Baht`}</div>
+                            <div className="seat-amount">
+                                <img
+                                    src="./images/btn-seat-subtract.png"
+                                    alt="Subtract"
+                                    onClick={() => handleSeatAmountChange(index, -1)}
+                                />
+                                <div className="amount-display">{seatAmounts[index]}</div>
+                                <img
+                                    src="./images/btn-seat-add.png"
+                                    alt="Add"
+                                    onClick={() => handleSeatAmountChange(index, 1)}
+                                />
+                            </div>
                         </div>
                     );
                 })}

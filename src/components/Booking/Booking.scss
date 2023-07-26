@@ -87,14 +87,15 @@
 
   .seat-choices {
     display: flex;
-    gap: 100px;
+    justify-content: space-evenly;
+    width: 100%;
 
     .seat-info {
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      img {
+      .seat-image {
         margin-bottom: 10px;
       }
 
@@ -106,6 +107,19 @@
       .seat-price {
         font-size: 22px;
         color: #f1e3c2;
+      }
+
+      .seat-amount {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+
+        .amount-display {
+          background-image: url("./images/bg-seat-input.png");
+          padding: 7px 25px;
+          font-size: 20px;
+          text-align: center;
+        }
       }
     }
   }
