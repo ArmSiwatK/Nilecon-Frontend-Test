@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
-import AlertBox from './AlertBox';
+import AlertBox from '../AlertBox/AlertBox';
 
 const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeIndex }) => {
     const [showAlert, setShowAlert] = useState(false);
@@ -79,8 +79,10 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
 
             {showAlert && (
                 <AlertBox
-                    message1="You may only reserve/buy tickets at least 60 minutes before showtime."
-                    message2="Please call 02-160-5999 for more information."
+                    messages={[
+                        "You may only reserve/buy tickets at least 60 minutes before showtime.",
+                        "Please call 02-160-5999 for more information."
+                    ]}
                     onClose={() => setShowAlert(false)}
                 />
             )}

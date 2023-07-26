@@ -48,6 +48,7 @@ const Booking = () => {
                     </div>
                 </div>
             </div>
+            <div className="booking-step"></div>
         </div>
     );
 };
