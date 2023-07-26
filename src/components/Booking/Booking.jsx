@@ -1,19 +1,20 @@
-import React from 'react';
-import movieData from '../../assets/MovieData.json';
+import React, { useState } from 'react';
+import MovieData from '../../assets/MovieData.json';
+import Months from '../../assets/Months.json';
+import Seats from '../../assets/Seats.json';
+import Halls from '../../assets/Halls.json';
 import './Booking.scss';
 
 const Booking = () => {
+    const [currentStep, setCurrentStep] = useState(1);
+
     const today = new Date();
 
-    const getMonthName = (monthIndex) => {
-        const monthNames = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        return monthNames[monthIndex];
-    };
-
     const formattedDate = () => {
+        const getMonthName = (monthIndex) => {
+            return Months.months[monthIndex];
+        };
+
         const day = today.getDate();
         const monthIndex = today.getMonth();
         const year = today.getFullYear();
@@ -25,7 +26,11 @@ const Booking = () => {
         window.history.back();
     };
 
-    const lastScreenTime = movieData.screenTime[movieData.screenTime.length - 1];
+    const lastScreenTime = MovieData.screenTime[MovieData.screenTime.length - 1];
+
+    const hallNumber = lastScreenTime.hall;
+    const hallData = Halls.find((hall) => hall.number === hallNumber);
+    const seatTypes = hallData ? hallData.seatTypes : [];
 
     return (
         <div className="booking-container">
@@ -33,13 +38,13 @@ const Booking = () => {
                 <input type="image" src="./images/btn-back.png" onClick={handleGoBack} alt="Back" />
             </div>
             <div className="booking-info">
-                <img className="movie-cover" src={movieData.movieCover} alt={movieData.movieName} />
+                <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
                 <div className="movie-info">
-                    <div className="movie-name">{movieData.movieName.toUpperCase()}</div>
+                    <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
                     <div className="movie-info-icons">
                         <img className="movie-rating" src="./images/rate-general.png" />
                         <img className="clock-movie-type" src="./images/type-digital.png" />
-                        <div className="movie-type">{movieData.movieType}</div>
+                        <div className="movie-type">{MovieData.movieType}</div>
                     </div>
                     <div className="movie-details">
                         <div className="movie-details-cell"><span>Date:</span> {formattedDate()}</div>
@@ -48,7 +53,27 @@ const Booking = () => {
                     </div>
                 </div>
             </div>
-            <div className="booking-step"></div>
+            <div className="booking-step">
+                <img src={`./images/booking-step-${currentStep}.png`} />
+            </div>
+            <div className="seat-choices">
+                {seatTypes.map((seatType, index) => {
+                    const seatData = Seats.find((seat) => seat.name === seatType);
+                    if (!seatData) return null;
+
+                    const formattedPrice = Number(seatData.price).toLocaleString();
+
+                    return (
+                        <div key={index} className="seat-info">
+                            <img src={seatData.image} alt={seatData.name} />
+                            <div className="seat-name">
+                                {`${seatData.name} (${seatData.seats} Seats)`}
+                            </div>
+                            <div className="seat-price">{`${formattedPrice} Baht`}</div>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };

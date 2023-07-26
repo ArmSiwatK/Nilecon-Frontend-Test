@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Large Day Bed",
+    "image": "./images/seat-daybed-large.png",
+    "price": "3400",
+    "seats": "2"
+  },
+  {
+    "name": "Day Bed",
+    "image": "./images/seat-daybed.png",
+    "price": "3400",
+    "seats": "2"
+  }
+]

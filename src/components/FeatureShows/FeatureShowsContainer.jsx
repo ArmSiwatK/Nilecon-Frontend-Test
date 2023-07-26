@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
 import AlertBox from '../AlertBox/AlertBox';
 
-const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeIndex }) => {
+const FeatureShowsContainer = ({ MovieData, isScreenTimePast, currentScreenTimeIndex }) => {
     const [showAlert, setShowAlert] = useState(false);
     const currentTime = new Date();
 
@@ -21,13 +21,13 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
             <div className="feature-shows-container">
                 <div className="feature-show-block">
                     <a className="movie-cover-link">
-                        <img className="movie-cover" src={movieData.movieCover} alt={movieData.movieName} />
+                        <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
                     </a>
                     <div className="movie-info">
-                        <div className="movie-name">{movieData.movieName.toUpperCase()}</div>
+                        <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
                         <div className="movie-time">
                             <img className="clock-icon" src="./images/clock.png" />
-                            <div className="movie-length">{movieData.movieLength} Min</div>
+                            <div className="movie-length">{MovieData.movieLength} Min</div>
                         </div>
                         <div className="movie-info-icons">
                             <img className="movie-rating" src="./images/rate-general.png" />
@@ -36,7 +36,7 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                     </div>
                 </div>
                 <div className="screen-time-container">
-                    {movieData.screenTime.map((screen, index) => {
+                    {MovieData.screenTime.map((screen, index) => {
                         const boxId = isScreenTimePast(screen.time) ? 'past' : 'future';
                         const hallTypeStyle = {
                             backgroundImage: `url(./images/hilight-hall-${screen.hall}.png)`,
@@ -52,7 +52,7 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                             <div
                                 key={index}
                                 data-tooltip-id="message-box"
-                                data-tooltip-content={`Audio: ${movieData.movieAudio} / Subtitles: ${movieData.movieSubtitles}`}
+                                data-tooltip-content={`Audio: ${MovieData.movieAudio} / Subtitles: ${MovieData.movieSubtitles}`}
                             >
                                 <NavLink
                                     to={shouldNavigate ? "/select-ticket" : "#"}
@@ -68,7 +68,7 @@ const FeatureShowsContainer = ({ movieData, isScreenTimePast, currentScreenTimeI
                                 >
                                     <div className="hall-type" style={hallTypeStyle}></div>
                                     <div className="screen-time">{screen.time}</div>
-                                    <div className="movie-type">{movieData.movieType}</div>
+                                    <div className="movie-type">{MovieData.movieType}</div>
                                 </NavLink>
                             </div>
                         );

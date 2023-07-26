@@ -1,6 +1,6 @@
 import React from 'react';
 import FeatureShowsContainer from './FeatureShowsContainer';
-import movieData from '../../assets/MovieData.json';
+import MovieData from '../../assets/MovieData.json';
 import './FeatureShows.scss';
 
 const FeatureShows = () => {
@@ -19,17 +19,17 @@ const FeatureShows = () => {
             <div className="feature-shows-title">SHOWTIMES</div>
             <div className="feature-shows-list">
                 <FeatureShowsContainer
-                    movieData={movieData}
+                    MovieData={MovieData}
                     isScreenTimePast={isScreenTimePast}
                     currentScreenTimeIndex={currentScreenTimeIndex}
                 />
                 <FeatureShowsContainer
-                    movieData={movieData}
+                    MovieData={MovieData}
                     isScreenTimePast={isScreenTimePast}
                     currentScreenTimeIndex={currentScreenTimeIndex}
                 />
                 <FeatureShowsContainer
-                    movieData={movieData}
+                    MovieData={MovieData}
                     isScreenTimePast={isScreenTimePast}
                     currentScreenTimeIndex={currentScreenTimeIndex}
                 />
