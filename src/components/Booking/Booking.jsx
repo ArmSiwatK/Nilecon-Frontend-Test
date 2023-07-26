@@ -77,12 +77,14 @@ const Booking = () => {
                             <div className="seat-price">{`${formattedPrice} Baht`}</div>
                             <div className="seat-amount">
                                 <img
+                                    className="subtract-button"
                                     src="./images/btn-seat-subtract.png"
                                     alt="Subtract"
                                     onClick={() => handleSeatAmountChange(index, -1)}
                                 />
                                 <div className="amount-display">{seatAmounts[index]}</div>
                                 <img
+                                    className="add-button"
                                     src="./images/btn-seat-add.png"
                                     alt="Add"
                                     onClick={() => handleSeatAmountChange(index, 1)}
@@ -91,6 +93,9 @@ const Booking = () => {
                         </div>
                     );
                 })}
+            </div>
+            <div className="next-button">
+                <input type="image" src="./images/btn-seat-next.png" alt="Next" />
             </div>
         </div>
     );

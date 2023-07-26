@@ -114,12 +114,41 @@
         align-items: center;
         margin-top: 20px;
 
+        .subtract-button,
+        .add-button {
+          transition: opacity 0.5s ease;
+
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+
         .amount-display {
           background-image: url("./images/bg-seat-input.png");
-          padding: 7px 25px;
+          padding: 6px 25px;
           font-size: 20px;
           text-align: center;
         }
+      }
+    }
+  }
+
+  .next-button {
+    display: flex;
+    justify-content: center;
+    width: 1024px;
+    height: auto;
+    margin: 70px auto 40px;
+    background-image: url("./images/bg-seat-bottom.png");
+    background-repeat: no-repeat;
+
+    input {
+      transition: opacity 0.5s ease;
+      position: relative;
+      top: 20px;
+
+      &:hover {
+        opacity: 0.5;
       }
     }
   }
