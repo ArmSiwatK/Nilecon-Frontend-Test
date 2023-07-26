@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
 import AlertBox from '../AlertBox/AlertBox';
+import { ScreenContext } from '../../ScreenContext';
 
 const FeatureShowsContainer = ({ MovieData, isScreenTimePast, currentScreenTimeIndex }) => {
     const [showAlert, setShowAlert] = useState(false);
+    const { setSelectedScreen } = useContext(ScreenContext);
     const currentTime = new Date();
 
     const canNavigate = (screenTime) => {
@@ -14,6 +16,10 @@ const FeatureShowsContainer = ({ MovieData, isScreenTimePast, currentScreenTimeI
 
         const timeDifference = screenTimeDate.getTime() - currentTime.getTime();
         return timeDifference >= 60 * 60 * 1000;
+    };
+
+    const handleSelectScreen = (screen) => {
+        setSelectedScreen(screen);
     };
 
     return (
@@ -63,6 +69,8 @@ const FeatureShowsContainer = ({ MovieData, isScreenTimePast, currentScreenTimeI
                                         if (!shouldNavigate && !isScreenTimePast(screen.time)) {
                                             event.preventDefault();
                                             setShowAlert(true);
+                                        } else {
+                                            handleSelectScreen(screen);
                                         }
                                     }}
                                 >

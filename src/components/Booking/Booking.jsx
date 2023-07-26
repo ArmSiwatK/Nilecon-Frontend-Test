@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ScreenContext } from '../../ScreenContext';
 import MovieData from '../../assets/MovieData.json';
 import Months from '../../assets/Months.json';
 import Seats from '../../assets/Seats.json';
@@ -6,8 +7,10 @@ import Halls from '../../assets/Halls.json';
 import './Booking.scss';
 
 const Booking = () => {
+    const { selectedScreen } = useContext(ScreenContext);
+
     const today = new Date();
-    const lastScreenTime = MovieData.screenTime[MovieData.screenTime.length - 1];
+    const lastScreenTime = selectedScreen || MovieData.screenTime[MovieData.screenTime.length - 1];
     const hallData = Halls.find((hall) => hall.number === lastScreenTime.hall);
     const seatTypes = hallData ? hallData.seatTypes : [];
 

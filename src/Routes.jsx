@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { ScreenContextProvider } from './ScreenContext';
 import Home from './pages/Home';
 import SelectTicket from './pages/SelectTicket';
 
@@ -20,7 +21,9 @@ const Routes = () => {
     ]);
 
     return (
-        <RouterProvider router={router} />
+        <ScreenContextProvider>
+            <RouterProvider router={router} />
+        </ScreenContextProvider>
     );
 };
 
