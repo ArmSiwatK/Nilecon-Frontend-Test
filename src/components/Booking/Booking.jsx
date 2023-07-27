@@ -63,51 +63,61 @@ const Booking = () => {
             {currentStep === 2 && (
                 <div className="seat-position">
                     <img src="./images/theater-screen.png" />
-                    {hallData &&
-                        hallData.seatLayout.map((row, rowIndex) => (
-                            <div key={rowIndex} className="seat-row">
-                                {row.map((seat, seatIndex) => {
-                                    const seatType = seatTypes[seat.type];
-                                    const seatData = Seats.find((seatData) => seatData.name === seatType);
+                    <div className="seat-set">
+                        {hallData &&
+                            hallData.seatLayout.map((row, rowIndex) => (
+                                <div key={rowIndex} className="seat-row">
+                                    {row.map((seat, seatIndex) => {
+                                        const seatType = seatTypes[seat.type];
+                                        const seatData = Seats.find((seatData) => seatData.name === seatType);
 
-                                    const alphabetIndex = hallData.seatLayout.length - rowIndex - 1;
-                                    const alphabet = String.fromCharCode(65 + alphabetIndex);
+                                        const alphabetIndex = hallData.seatLayout.length - rowIndex - 1;
+                                        const alphabet = String.fromCharCode(65 + alphabetIndex);
 
-                                    const leftSeatNumber = seatIndex * 2 + 1;
-                                    const rightSeatNumber = seatIndex * 2 + 2;
+                                        const leftSeatNumber = seatIndex * 2 + 1;
+                                        const rightSeatNumber = seatIndex * 2 + 2;
 
-                                    const leftSeatName = `${alphabet}${leftSeatNumber}`;
-                                    const rightSeatName = `${alphabet}${rightSeatNumber}`;
+                                        const leftSeatName = `${alphabet}${leftSeatNumber}`;
+                                        const rightSeatName = `${alphabet}${rightSeatNumber}`;
 
-                                    return (
-                                        <div key={seatIndex} className="seat-pair">
-                                            <div className="seat">
-                                                <img
-                                                    src={
-                                                        seat.occupied
-                                                            ? seatData.position[0].seat[2].occupied
-                                                            : seatData.position[0].seat[0].vacant
-                                                    }
-                                                    alt={`Left Seat ${rowIndex}-${seatIndex}`}
-                                                />
-                                                <div className="seat-name">{leftSeatName}</div>
+                                        return (
+                                            <div key={seatIndex} className="seat-pair">
+                                                <div className="seat">
+                                                    <img
+                                                        src={
+                                                            seat.occupied
+                                                                ? seatData.position[0].seat[2].occupied
+                                                                : seatData.position[0].seat[0].vacant
+                                                        }
+                                                        alt={`Left Seat ${rowIndex}-${seatIndex}`}
+                                                    />
+                                                    <div
+                                                        className={`seat-name ${seat.occupied ? "occupied" : ""}`}
+                                                    >
+                                                        {leftSeatName}
+                                                    </div>
+                                                </div>
+                                                <div className="seat">
+                                                    <img
+                                                        src={
+                                                            seat.occupied
+                                                                ? seatData.position[1].seat[2].occupied
+                                                                : seatData.position[1].seat[0].vacant
+                                                        }
+                                                        alt={`Right Seat ${rowIndex}-${seatIndex}`}
+                                                    />
+                                                    <div
+                                                        className={`seat-name ${seat.occupied ? "occupied" : ""}`}
+                                                    >
+                                                        {rightSeatName}
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="seat">
-                                                <img
-                                                    src={
-                                                        seat.occupied
-                                                            ? seatData.position[1].seat[2].occupied
-                                                            : seatData.position[1].seat[0].vacant
-                                                    }
-                                                    alt={`Right Seat ${rowIndex}-${seatIndex}`}
-                                                />
-                                                <div className="seat-name">{rightSeatName}</div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        ))}
+                                        );
+                                    })}
+                                </div>
+                            ))}
+                    </div>
                 </div>
             )}
 

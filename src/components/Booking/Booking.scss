@@ -163,18 +163,33 @@
     }
   }
 
-  .seat-row {
+  .seat-set {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 
-    .seat-pair {
+    .seat-row {
       display: flex;
+      justify-content: center;
+      gap: 20px;
 
-      .seat {
+      .seat-pair {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: #f1e3c2;
+
+        .seat {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .seat-name {
+            color: #f1e3c2;
+            font-size: 18px;
+
+            &.occupied {
+              color: #8e8e8e;
+            }
+          }
+        }
       }
     }
   }
