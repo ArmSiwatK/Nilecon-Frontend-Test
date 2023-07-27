@@ -12,7 +12,7 @@ const SeatChoices = ({ seatTypes, seatAmounts, handleSeatAmountChange }) => {
 
                 return (
                     <div key={index} className="seat-info">
-                        <img className="seat-image" src={seatData.image} alt={seatData.name} />
+                        <img className="seat-image" src={seatData.profile} alt={seatData.name} />
                         <div className="seat-name">
                             {`${seatData.name} (${seatData.seats} Seats)`}
                         </div>

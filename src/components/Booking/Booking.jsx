@@ -4,6 +4,7 @@ import BookingInfo from './BookingInfo';
 import SeatChoices from './SeatChoices';
 import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';
+import Seats from '../../assets/Seats.json';
 import './Booking.scss';
 
 const Booking = () => {
@@ -61,7 +62,41 @@ const Booking = () => {
 
             {currentStep === 2 && (
                 <div className="seat-position">
-                    {/* Seat positions rendering */}
+                    <img src="./images/theater-screen.png" />
+                    {hallData &&
+                        hallData.seatLayout.map((row, rowIndex) => (
+                            <div key={rowIndex} className="seat-row">
+                                {row.map((seat, seatIndex) => {
+                                    const seatType = seatTypes[seat.type];
+                                    const seatData = Seats.find((seatData) => seatData.name === seatType);
+
+                                    return (
+                                        <div key={seatIndex} className="seat-pair">
+                                            <div className="seat">
+                                                <img
+                                                    src={
+                                                        seat.occupied
+                                                            ? seatData.position[0].seat[2].occupied
+                                                            : seatData.position[0].seat[0].vacant
+                                                    }
+                                                    alt={`Left Seat ${rowIndex}-${seatIndex}`}
+                                                />
+                                            </div>
+                                            <div className="seat">
+                                                <img
+                                                    src={
+                                                        seat.occupied
+                                                            ? seatData.position[1].seat[2].occupied
+                                                            : seatData.position[1].seat[0].vacant
+                                                    }
+                                                    alt={`Right Seat ${rowIndex}-${seatIndex}`}
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        ))}
                 </div>
             )}
 

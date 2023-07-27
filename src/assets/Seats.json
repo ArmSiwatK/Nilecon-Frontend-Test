@@ -1,13 +1,49 @@
 [
   {
     "name": "Large Day Bed",
-    "image": "./images/seat-daybed-large.png",
+    "profile": "./images/seat-daybed-large.png",
+    "position": [
+      {
+        "side": "left",
+        "seat": [
+          { "vacant": "./images/daybed-large-left.png" },
+          { "chosen": "./images/daybed-large-left-chosen.png" },
+          { "occupied": "./images/daybed-large-left-occupied.png" }
+        ]
+      },
+      {
+        "side": "right",
+        "seat": [
+          { "vacant": "./images/daybed-large-right.png" },
+          { "chosen": "./images/daybed-large-right-chosen.png" },
+          { "occupied": "./images/daybed-large-right-occupied.png" }
+        ]
+      }
+    ],
     "price": "3400",
     "seats": "2"
   },
   {
     "name": "Day Bed",
-    "image": "./images/seat-daybed.png",
+    "profile": "./images/seat-daybed.png",
+    "position": [
+      {
+        "side": "left",
+        "seat": [
+          { "vacant": "./images/daybed-left.png" },
+          { "chosen": "./images/daybed-left-chosen.png" },
+          { "occupied": "./images/daybed-left-occupied.png" }
+        ]
+      },
+      {
+        "side": "right",
+        "seat": [
+          { "vacant": "./images/daybed-right.png" },
+          { "chosen": "./images/daybed-right-chosen.png" },
+          { "occupied": "./images/daybed-right-occupied.png" }
+        ]
+      }
+    ],
     "price": "3400",
     "seats": "2"
   }

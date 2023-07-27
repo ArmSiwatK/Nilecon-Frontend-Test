@@ -1,22 +1,154 @@
 [
   {
     "number": "1",
-    "seatTypes": ["Large Day Bed", "Day Bed"]
+    "seatTypes": ["Large Day Bed", "Day Bed"],
+    "seatLayout": [
+      [
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 0, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 0, "occupied": true }
+      ]
+    ]
   },
   {
     "number": "2",
-    "seatTypes": ["Large Day Bed", "Day Bed"]
+    "seatTypes": ["Large Day Bed", "Day Bed"],
+    "seatLayout": [
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": true }
+      ]
+    ]
   },
   {
     "number": "3",
-    "seatTypes": ["Large Day Bed", "Day Bed"]
+    "seatTypes": ["Large Day Bed", "Day Bed"],
+    "seatLayout": [
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": true }
+      ]
+    ]
   },
   {
     "number": "4",
-    "seatTypes": ["Large Day Bed", "Day Bed"]
+    "seatTypes": ["Large Day Bed", "Day Bed"],
+    "seatLayout": [
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": true }
+      ]
+    ]
   },
   {
     "number": "5",
-    "seatTypes": ["Large Day Bed", "Day Bed"]
+    "seatTypes": ["Large Day Bed", "Day Bed"],
+    "seatLayout": [
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 0, "occupied": false },
+        { "type": 1, "occupied": false }
+      ],
+      [
+        { "type": 1, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 0, "occupied": true },
+        { "type": 1, "occupied": true }
+      ]
+    ]
   }
 ]

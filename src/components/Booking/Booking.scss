@@ -162,4 +162,13 @@
       background-position: 175px 34px;
     }
   }
+
+  .seat-row {
+    display: flex;
+    justify-content: center;
+
+    .seat-pair {
+      display: flex;
+    }
+  }
 }
