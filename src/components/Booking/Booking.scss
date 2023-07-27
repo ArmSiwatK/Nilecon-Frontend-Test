@@ -152,4 +152,14 @@
       }
     }
   }
+
+  .alert-box {
+    .alert-content {
+      padding: 30px 210px;
+      background-color: #f6eeda;
+      background-image: url("./images/icon-alert-small.png");
+      background-repeat: no-repeat;
+      background-position: 175px 34px;
+    }
+  }
 }

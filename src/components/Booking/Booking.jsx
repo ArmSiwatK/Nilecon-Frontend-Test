@@ -2,19 +2,19 @@ import React, { useState, useContext } from 'react';
 import { ScreenContext } from '../../ScreenContext';
 import BookingInfo from './BookingInfo';
 import SeatChoices from './SeatChoices';
-import MovieData from '../../assets/MovieData.json';
+import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';
 import './Booking.scss';
 
 const Booking = () => {
     const { selectedScreen } = useContext(ScreenContext);
 
-    const lastScreenTime = selectedScreen || MovieData.screenTime[MovieData.screenTime.length - 1];
-    const hallData = Halls.find((hall) => hall.number === lastScreenTime.hall);
+    const hallData = Halls.find((hall) => hall.number === selectedScreen.hall);
     const seatTypes = hallData ? hallData.seatTypes : [];
 
     const [currentStep, setCurrentStep] = useState(1);
-    const [seatAmounts, setSeatAmounts] = useState(seatTypes.map(() => 1));
+    const [seatAmounts, setSeatAmounts] = useState(seatTypes.map(() => 0));
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleGoBack = () => {
         if (currentStep === 1) {
@@ -25,7 +25,11 @@ const Booking = () => {
     };
 
     const handleNextStep = () => {
-        setCurrentStep((prevStep) => prevStep + 1);
+        if (seatAmounts.every(amount => amount === 0)) {
+            setShowAlert(true);
+        } else {
+            setCurrentStep(prevStep => prevStep + 1);
+        }
     };
 
     const handleSeatAmountChange = (index, amount) => {
@@ -70,6 +74,13 @@ const Booking = () => {
             <div className="next-button">
                 <input type="image" src="./images/btn-seat-next.png" alt="Next" onClick={handleNextStep} />
             </div>
+
+            {showAlert && (
+                <AlertBox
+                    messages={["Please select a seat."]}
+                    onClose={() => setShowAlert(false)}
+                />
+            )}
         </div>
     );
 };
