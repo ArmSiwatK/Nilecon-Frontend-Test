@@ -119,25 +119,28 @@ const Booking = () => {
                             ))}
                     </div>
                     <div className="seat-summary">
-                        {seatTypes.map((seatType, index) => {
-                            const seatData = Seats.find((seat) => seat.name === seatType);
-                            if (!seatData) return null;
-                            const formattedPrice = Number(seatData.price).toLocaleString();
+                        {seatTypes
+                            .map((seatType, index) => {
+                                const seatData = Seats.find((seat) => seat.name === seatType);
+                                if (!seatData) return null;
+                                const formattedPrice = Number(seatData.price).toLocaleString();
 
-                            return (
-                                <div key={index} className="seat-info">
-                                    <div className="seat-info-item">
-                                        {`${seatData.name} (${seatData.seats} Seats)`}
-                                    </div>
-                                    <div className="seat-info-item">
-                                        Seat No. <span>{seatAmounts[index]}</span>
-                                    </div>
-                                    <div className="seat-info-item">
-                                        Price: <span>{`${formattedPrice} Baht`}</span>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                return (
+                                    seatAmounts[index] > 0 && (
+                                        <div key={index} className="seat-info">
+                                            <div className="seat-info-item">
+                                                {`${seatData.name} (${seatData.seats} Seats)`}
+                                            </div>
+                                            <div className="seat-info-item">
+                                                Seat No. <span>{seatAmounts[index]}</span>
+                                            </div>
+                                            <div className="seat-info-item">
+                                                Price: <span>{`${formattedPrice} Baht`}</span>
+                                            </div>
+                                        </div>
+                                    )
+                                );
+                            })}
                     </div>
                 </div>
             )}
