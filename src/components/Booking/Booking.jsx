@@ -70,6 +70,15 @@ const Booking = () => {
                                     const seatType = seatTypes[seat.type];
                                     const seatData = Seats.find((seatData) => seatData.name === seatType);
 
+                                    const alphabetIndex = hallData.seatLayout.length - rowIndex - 1;
+                                    const alphabet = String.fromCharCode(65 + alphabetIndex);
+
+                                    const leftSeatNumber = seatIndex * 2 + 1;
+                                    const rightSeatNumber = seatIndex * 2 + 2;
+
+                                    const leftSeatName = `${alphabet}${leftSeatNumber}`;
+                                    const rightSeatName = `${alphabet}${rightSeatNumber}`;
+
                                     return (
                                         <div key={seatIndex} className="seat-pair">
                                             <div className="seat">
@@ -81,6 +90,7 @@ const Booking = () => {
                                                     }
                                                     alt={`Left Seat ${rowIndex}-${seatIndex}`}
                                                 />
+                                                <div className="seat-name">{leftSeatName}</div>
                                             </div>
                                             <div className="seat">
                                                 <img
@@ -91,6 +101,7 @@ const Booking = () => {
                                                     }
                                                     alt={`Right Seat ${rowIndex}-${seatIndex}`}
                                                 />
+                                                <div className="seat-name">{rightSeatName}</div>
                                             </div>
                                         </div>
                                     );
