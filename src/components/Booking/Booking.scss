@@ -193,4 +193,28 @@
       }
     }
   }
+
+  .seat-summary {
+    display: grid;
+    align-items: center;
+    margin-top: 50px;
+
+    .seat-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      color: #8e8e8e;
+      font-size: 18px;
+
+      .seat-info-item {
+        padding: 12px 60px;
+        background-color: #101010;
+        border: 1px solid #3e3e3e;
+
+        span {
+          color: #f1e3c2;
+        }
+      }
+    }
+  }
 }
