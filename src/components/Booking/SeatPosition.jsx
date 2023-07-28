@@ -32,6 +32,9 @@ const SeatPosition = ({
                 {hallData &&
                     hallData.seatLayout.map((row, rowIndex) => (
                         <div key={rowIndex} className="seat-row">
+                            <div className="arrow left">
+                                {String.fromCharCode(65 + hallData.seatLayout.length - rowIndex - 1)}
+                            </div>
                             {row.map((seat, seatIndex) => {
                                 const seatType = seatTypes[seat.type];
                                 const seatData = Seats.find((seatData) => seatData.name === seatType);
@@ -80,6 +83,9 @@ const SeatPosition = ({
                                     </div>
                                 );
                             })}
+                            <div className="arrow right">
+                                {String.fromCharCode(65 + hallData.seatLayout.length - rowIndex - 1)}
+                            </div>
                         </div>
                     ))}
             </div>

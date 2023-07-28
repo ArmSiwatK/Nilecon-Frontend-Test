@@ -171,6 +171,28 @@
           }
         }
       }
+
+      .arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 30px;
+        background-repeat: no-repeat;
+        font-size: 18px;
+        color: #8e8e8e;
+
+        &.left {
+          background-image: url("./images/theater-nav-left.png");
+          background-position: 20px center;
+          margin-right: 250px;
+        }
+
+        &.right {
+          background-image: url("./images/theater-nav-right.png");
+          background-position: 16px center;
+          margin-left: 250px;
+        }
+      }
     }
   }
 
