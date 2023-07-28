@@ -16,7 +16,7 @@ const Booking = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [seatAmounts, setSeatAmounts] = useState(seatTypes.map(() => 0));
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [showAlert, setShowAlert] = useState(false);
+    const [showAlert, setShowAlert] = useState(0);
 
     const handleGoBack = () => {
         if (currentStep === 1) {
@@ -27,19 +27,22 @@ const Booking = () => {
     };
 
     const handleNextStep = () => {
-        if (seatAmounts.every(amount => amount === 0)) {
-            setShowAlert(true);
-        } else {
-            const availableSeatsByType = getAvailableSeatsByType();
+        const availableSeatsByType = getAvailableSeatsByType();
+        const isAnySeatAmountExceeded = seatAmounts.some((amount, index) => amount > availableSeatsByType[seatTypes[index]].length);
 
-            const selectedSeats = selectSeats(availableSeatsByType);
-            if (selectedSeats.length === 0) {
-                return;
-            }
-
-            setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
-            setCurrentStep(prevStep => prevStep + 1);
+        if (isAnySeatAmountExceeded) {
+            setShowAlert(2);
+            return;
         }
+
+        const selectedSeats = selectSeats(availableSeatsByType);
+        if (selectedSeats.length === 0) {
+            setShowAlert(1);
+            return;
+        }
+
+        setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
+        setCurrentStep((prevStep) => prevStep + 1);
     };
 
     const handleSeatAmountChange = (index, amount) => {
@@ -238,9 +241,16 @@ const Booking = () => {
                 <input type="image" src="./images/btn-seat-next.png" alt="Next" onClick={handleNextStep} />
             </div>
 
-            {showAlert && (
+            {showAlert === 1 && (
                 <AlertBox
                     messages={["Please select a seat."]}
+                    onClose={() => setShowAlert(false)}
+                />
+            )}
+
+            {showAlert === 2 && (
+                <AlertBox
+                    messages={["Selected seat amount exceeds availability."]}
                     onClose={() => setShowAlert(false)}
                 />
             )}
