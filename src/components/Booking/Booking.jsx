@@ -127,11 +127,11 @@ const Booking = () => {
     };
 
     const getSelectedSeatNames = (selectedSeats, seatType) => {
-        const selectedSeatPairs = selectedSeats
+        return selectedSeats
             .map((selectedSeat) => {
                 const [rowIndex, seatIndex] = selectedSeat.split('-');
                 const seat = hallData.seatLayout[rowIndex][seatIndex];
-                if (seat.type === seatTypes.indexOf(seatType)) {
+                if (seatTypes[seat.type] === seatType) {
                     const alphabetIndex = hallData.seatLayout.length - rowIndex - 1;
                     const alphabet = String.fromCharCode(65 + alphabetIndex);
                     const leftSeatNumber = seatIndex * 2 + 1;
@@ -141,8 +141,6 @@ const Booking = () => {
                 return null;
             })
             .filter((seatName) => seatName !== null);
-
-        return selectedSeatPairs.join(', ');
     };
 
     return (
@@ -238,7 +236,7 @@ const Booking = () => {
                                             {`${seatData.name} (${seatData.seats} Seats)`}
                                         </div>
                                         <div className="seat-info-item">
-                                            Seat No. <span>{selectedSeatNames}</span>
+                                            Seat No. <span>{selectedSeatNames[instanceIndex]}</span>
                                         </div>
                                         <div className="seat-info-item">
                                             Price: <span>{`${formattedPrice} Baht`}</span>
