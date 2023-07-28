@@ -19,9 +19,6 @@ const Booking = () => {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [showAlert, setShowAlert] = useState(0);
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
     const [nameError, setNameError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [phoneError, setPhoneError] = useState(null);
@@ -71,6 +68,41 @@ const Booking = () => {
         }
     };
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        const errorMessages = {
+            name: !value ? '* This field is required' : null,
+            email: !value ? '* This field is required' : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? 'Invalid email address' : null,
+            phone: !value ? '* This field is required' : value.length < 9 ? 'Minimum 9 characters' : !/^\d+$/.test(value) ? 'Not a valid integer' : null,
+        };
+
+        switch (name) {
+            case 'name':
+                setNameError(errorMessages.name);
+                break;
+            case 'email':
+                setEmailError(errorMessages.email);
+                break;
+            case 'phone':
+                setPhoneError(errorMessages.phone);
+                break;
+            default:
+                break;
+        }
+
+        const isFormValid = !errorMessages.name && !errorMessages.email && !errorMessages.phone;
+        const reserveButton = document.getElementById('reserve');
+        if (reserveButton) {
+            reserveButton.disabled = !isFormValid;
+        }
+    };
+
+
+    const handleReserveSeats = () => {
+        setCurrentStep(3);
+    };
+
     return (
         <div className="booking-container">
             <div className="back-button">
@@ -105,16 +137,60 @@ const Booking = () => {
                 <div className="confirm-booking">
                     <img className="confirm-title" src="./images/confirm-booking.png" />
                     <div className="confirm-input">
-                        <input type="text" className="input-box" id="name" name="name" placeholder="Your Name" required />
-                        <input type="email" className="input-box" id="email" name="email" placeholder="Your Email" required />
-                        <input type="tel" className="input-box" id="phone" name="phone" placeholder="Phone No." required />
+
+                        <div className="input-container">
+                            <input
+                                type="text"
+                                className={`input-box ${nameError ? 'invalid' : ''}`}
+                                id="name"
+                                name="name"
+                                placeholder="Your Name"
+                                required
+                                onChange={handleInputChange}
+                            />
+                            {nameError && <div className="error-message">{nameError}</div>}
+                        </div>
+
+                        <div className="input-container">
+                            <input
+                                type="email"
+                                className={`input-box ${emailError ? 'invalid' : ''}`}
+                                id="email"
+                                name="email"
+                                placeholder="Your Email"
+                                required
+                                onChange={handleInputChange}
+                            />
+                            {emailError && <div className="error-message">{emailError}</div>}
+                        </div>
+
+                        <div className="input-container">
+                            <input
+                                type="tel"
+                                className={`input-box ${phoneError ? 'invalid' : ''}`}
+                                id="phone"
+                                name="phone"
+                                placeholder="Phone No."
+                                required
+                                onChange={handleInputChange}
+                            />
+                            {phoneError && <div className="error-message">{phoneError}</div>}
+                        </div>
 
                         <label>
                             <input type="checkbox" id="remember-me" name="remember-me" />
                             <span>Remember Me</span>
                         </label>
 
-                        <input type="image" id="reserve" src="./images/btn-reserve.png" alt="Reserve" />
+                        <input
+                            type="image"
+                            id="reserve"
+                            src="./images/btn-reserve.png"
+                            alt="Reserve"
+                            value="Reserve"
+                            disabled={nameError || emailError || phoneError}
+                            onClick={handleReserveSeats}
+                        />
                     </div>
                 </div>
             )}

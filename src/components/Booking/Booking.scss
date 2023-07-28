@@ -236,37 +236,56 @@
       flex-direction: column;
       align-items: center;
 
-      .input-box {
-        width: 330px;
-        height: 45px;
-        background-repeat: no-repeat;
-        margin: 10px;
-        border-radius: 4px;
-        text-indent: 56px;
-        font-size: 20px;
-        font-family: "Mongolian Baiti Regular";
-        color: #8e8e8e;
+      .input-container {
+        position: relative;
 
-        &::placeholder {
-          font-size: 18px;
-          opacity: 1;
+        .input-box {
+          width: 330px;
+          height: 45px;
+          background-repeat: no-repeat;
+          margin: 10px;
+          border-radius: 4px;
+          text-indent: 56px;
+          font-size: 20px;
+          font-family: "Mongolian Baiti Regular";
+          color: #8e8e8e;
+
+          &::placeholder {
+            font-size: 18px;
+            opacity: 1;
+          }
+
+          &:focus::placeholder {
+            opacity: 0.6;
+          }
+
+          &.invalid {
+            border-color: red;
+          }
         }
 
-        &:focus::placeholder {
-          opacity: 0.6;
+        .error-message {
+          position: absolute;
+          top: -18px;
+          left: 161px;
+          color: white;
+          background-color: rgba(0, 0, 0, 0.8);
+          border: 1px solid #8e8e8e;
+          border-radius: 10px;
+          padding: 10px 20px;
         }
-      }
 
-      #name {
-        background-image: url("./images/bg-reserve-input-name.png");
-      }
+        #name {
+          background-image: url("./images/bg-reserve-input-name.png");
+        }
 
-      #email {
-        background-image: url("./images/bg-reserve-input-email.png");
-      }
+        #email {
+          background-image: url("./images/bg-reserve-input-email.png");
+        }
 
-      #phone {
-        background-image: url("./images/bg-reserve-input-phone.png");
+        #phone {
+          background-image: url("./images/bg-reserve-input-phone.png");
+        }
       }
 
       label {
