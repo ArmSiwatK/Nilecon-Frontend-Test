@@ -225,9 +225,67 @@
     }
   }
 
-  .title-confirm {
-    text-align: center;
-    margin-top: 50px;
+  .confirm-booking {
+    .confirm-title {
+      text-align: center;
+      margin: 50px;
+    }
+
+    .confirm-input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .input-box {
+        width: 330px;
+        height: 45px;
+        background-repeat: no-repeat;
+        margin: 10px;
+        border-radius: 4px;
+        text-indent: 56px;
+        font-size: 20px;
+        font-family: "Mongolian Baiti Regular";
+        color: #8e8e8e;
+
+        &::placeholder {
+          font-size: 18px;
+          opacity: 1;
+        }
+
+        &:focus::placeholder {
+          opacity: 0.6;
+        }
+      }
+
+      #name {
+        background-image: url("./images/bg-reserve-input-name.png");
+      }
+
+      #email {
+        background-image: url("./images/bg-reserve-input-email.png");
+      }
+
+      #phone {
+        background-image: url("./images/bg-reserve-input-phone.png");
+      }
+
+      label {
+        color: #f1e3c2;
+        font-size: 18px;
+        span {
+          margin-left: 6px;
+        }
+      }
+
+      #reserve {
+        margin-top: 20px;
+        transition: opacity 0.5s ease;
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
   }
 
   .bottom-button {

@@ -19,6 +19,13 @@ const Booking = () => {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [showAlert, setShowAlert] = useState(0);
 
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [nameError, setNameError] = useState(null);
+    const [emailError, setEmailError] = useState(null);
+    const [phoneError, setPhoneError] = useState(null);
+
     const handleGoBack = () => {
         currentStep === 1 ? window.history.back() : setCurrentStep((prevStep) => prevStep - 1);
     };
@@ -94,7 +101,23 @@ const Booking = () => {
                 />
             )}
 
-            <img className="title-confirm" src="./images/confirm-booking.png" />
+            {currentStep === 2 && (
+                <div className="confirm-booking">
+                    <img className="confirm-title" src="./images/confirm-booking.png" />
+                    <div className="confirm-input">
+                        <input type="text" className="input-box" id="name" name="name" placeholder="Your Name" required />
+                        <input type="email" className="input-box" id="email" name="email" placeholder="Your Email" required />
+                        <input type="tel" className="input-box" id="phone" name="phone" placeholder="Phone No." required />
+
+                        <label>
+                            <input type="checkbox" id="remember-me" name="remember-me" />
+                            <span>Remember Me</span>
+                        </label>
+
+                        <input type="image" id="reserve" src="./images/btn-reserve.png" alt="Reserve" />
+                    </div>
+                </div>
+            )}
 
             {currentStep === 3 && (
                 <div className="confirmation">
