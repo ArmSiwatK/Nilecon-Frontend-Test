@@ -4,9 +4,7 @@ const getAvailableSeatsByType = (hallData, seatTypes) => {
         row.forEach((seat, seatIndex) => {
             if (!seat.occupied) {
                 const seatType = seatTypes[seat.type];
-                if (!availableSeatsByType[seatType]) {
-                    availableSeatsByType[seatType] = [];
-                }
+                availableSeatsByType[seatType] = availableSeatsByType[seatType] || [];
                 availableSeatsByType[seatType].push({ rowIndex, seatIndex });
             }
         });
@@ -28,10 +26,9 @@ const selectSeats = (seatTypes, seatAmounts, availableSeatsByType) => {
 
             if (selectedSeatsOfType.length < maxAllowedSeats) {
                 const availableSeatsOfType = availableSeatsByType[seatType];
-                if (availableSeatsOfType && availableSeatsOfType.length > 0) {
+                if (availableSeatsOfType?.length > 0) {
                     const randomAvailableSeatIndex = Math.floor(Math.random() * availableSeatsOfType.length);
-                    selectedSeat = availableSeatsOfType[randomAvailableSeatIndex];
-                    availableSeatsOfType.splice(randomAvailableSeatIndex, 1);
+                    selectedSeat = availableSeatsOfType.splice(randomAvailableSeatIndex, 1)[0];
                     selectedSeats.push({ ...selectedSeat, seatType: typeIndex });
                     break;
                 }

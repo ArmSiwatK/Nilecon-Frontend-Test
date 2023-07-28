@@ -1,22 +1,17 @@
 import React from 'react';
 import MovieData from '../../assets/MovieData.json';
-import Months from '../../assets/Months.json';
 import './Booking.scss';
 
 const BookingInfo = ({ selectedScreen }) => {
-    const today = new Date();
     const lastScreenTime = selectedScreen || MovieData.screenTime[MovieData.screenTime.length - 1];
 
     const formattedDate = () => {
-        const getMonthName = (monthIndex) => {
-            return Months.months[monthIndex];
-        };
-
+        const today = new Date();
         const day = today.getDate();
-        const monthIndex = today.getMonth();
+        const month = today.toLocaleString('default', { month: 'long' });
         const year = today.getFullYear();
 
-        return `${day} ${getMonthName(monthIndex)} ${year}`;
+        return `${day} ${month} ${year}`;
     };
 
     return (

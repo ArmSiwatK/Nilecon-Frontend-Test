@@ -20,11 +20,7 @@ const Booking = () => {
     const [showAlert, setShowAlert] = useState(0);
 
     const handleGoBack = () => {
-        if (currentStep === 1) {
-            window.history.back();
-        } else {
-            setCurrentStep((prevStep) => prevStep - 1);
-        }
+        currentStep === 1 ? window.history.back() : setCurrentStep((prevStep) => prevStep - 1);
     };
 
     const handleNextStep = () => {
@@ -37,12 +33,7 @@ const Booking = () => {
         }
 
         const selectedSeats = selectSeats(seatTypes, seatAmounts, availableSeatsByType);
-        if (selectedSeats.length === 0) {
-            setShowAlert(1);
-            return;
-        }
-
-        setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
+        selectedSeats.length === 0 ? setShowAlert(1) : setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
         setCurrentStep((prevStep) => prevStep + 1);
     };
 
@@ -54,22 +45,20 @@ const Booking = () => {
     };
 
     const handleSeatSelection = (rowIndex, seatIndex) => {
-        if (!hallData.seatLayout[rowIndex][seatIndex].occupied) {
+        const { occupied, type } = hallData.seatLayout[rowIndex][seatIndex];
+
+        if (!occupied) {
             const selectedSeatKey = `${rowIndex}-${seatIndex}`;
             const isAlreadySelected = selectedSeats.includes(selectedSeatKey);
 
-            const seatType = hallData.seatLayout[rowIndex][seatIndex].type;
-            const maxAllowedSeats = seatAmounts[seatType];
             const selectedSeatsOfType = selectedSeats.filter(key => {
                 const [selectedRowIndex, selectedSeatIndex] = key.split('-');
-                return hallData.seatLayout[selectedRowIndex][selectedSeatIndex].type === seatType;
+                return hallData.seatLayout[selectedRowIndex][selectedSeatIndex].type === type;
             });
 
             if (isAlreadySelected) {
-                setSelectedSeats((prevSelectedSeats) =>
-                    prevSelectedSeats.filter((key) => key !== selectedSeatKey)
-                );
-            } else if (selectedSeatsOfType.length < maxAllowedSeats) {
+                setSelectedSeats((prevSelectedSeats) => prevSelectedSeats.filter((key) => key !== selectedSeatKey));
+            } else if (selectedSeatsOfType.length < seatAmounts[type]) {
                 setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, selectedSeatKey]);
             }
         }

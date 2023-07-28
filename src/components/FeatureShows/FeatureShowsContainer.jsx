@@ -7,15 +7,13 @@ import { ScreenContext } from '../../ScreenContext';
 const FeatureShowsContainer = ({ MovieData, isScreenTimePast, currentScreenTimeIndex }) => {
     const [showAlert, setShowAlert] = useState(false);
     const { setSelectedScreen } = useContext(ScreenContext);
-    const currentTime = new Date();
 
     const canNavigate = (screenTime) => {
+        const [hours, minutes] = screenTime.split(':').map(Number);
         const screenTimeDate = new Date();
-        const [hours, minutes] = screenTime.split(':');
         screenTimeDate.setHours(hours, minutes, 0, 0);
 
-        const timeDifference = screenTimeDate.getTime() - currentTime.getTime();
-        return timeDifference >= 60 * 60 * 1000;
+        return screenTimeDate.getTime() - Date.now() >= 60 * 60 * 1000;
     };
 
     const handleSelectScreen = (screen) => {
