@@ -42,20 +42,19 @@ const Booking = () => {
     };
 
     const handleSeatSelection = (rowIndex, seatIndex) => {
-        const seatType = hallData.seatLayout[rowIndex][seatIndex].type;
-        const seatData = Seats.find((seat) => seat.name === seatTypes[seatType]);
-
         if (!hallData.seatLayout[rowIndex][seatIndex].occupied) {
-            setSelectedSeats((prevSelectedSeats) => {
-                const seatKey = `${rowIndex}-${seatIndex}`;
-                if (prevSelectedSeats.includes(seatKey)) {
-                    return prevSelectedSeats.filter((key) => key !== seatKey);
-                } else {
-                    return [...prevSelectedSeats, seatKey];
-                }
-            });
+            const selectedSeatKey = `${rowIndex}-${seatIndex}`;
+            const isAlreadySelected = selectedSeats.includes(selectedSeatKey);
+            const maxAllowedSeats = seatAmounts.reduce((total, amount) => total + amount, 0);
+
+            if (isAlreadySelected) {
+                setSelectedSeats((prevSelectedSeats) => prevSelectedSeats.filter((key) => key !== selectedSeatKey));
+            } else if (selectedSeats.length < maxAllowedSeats) {
+                setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, selectedSeatKey]);
+            }
         }
     };
+
 
     return (
         <div className="booking-container">
