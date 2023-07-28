@@ -133,26 +133,6 @@
     }
   }
 
-  .next-button {
-    display: flex;
-    justify-content: center;
-    width: 1024px;
-    height: auto;
-    margin: 70px auto 40px;
-    background-image: url("./images/bg-seat-bottom.png");
-    background-repeat: no-repeat;
-
-    input {
-      transition: opacity 0.5s ease;
-      position: relative;
-      top: 20px;
-
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-  }
-
   .alert-box {
     .alert-content {
       padding: 30px 210px;
@@ -214,6 +194,31 @@
         span {
           color: #f1e3c2;
         }
+      }
+    }
+  }
+
+  .title-confirm {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .bottom-button {
+    display: flex;
+    justify-content: center;
+    width: 1024px;
+    height: auto;
+    margin: 70px auto 40px;
+    background-image: url("./images/bg-seat-bottom.png");
+    background-repeat: no-repeat;
+
+    input {
+      transition: opacity 0.5s ease;
+      position: relative;
+      top: 20px;
+
+      &:hover {
+        opacity: 0.5;
       }
     }
   }

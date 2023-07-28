@@ -249,15 +249,25 @@ const Booking = () => {
                 </div>
             )}
 
+            <img className="title-confirm" src="./images/confirm-booking.png" />
+
             {currentStep === 3 && (
                 <div className="confirmation">
                     {/* Confirmation rendering */}
                 </div>
             )}
 
-            <div className="next-button">
-                <input type="image" src="./images/btn-seat-next.png" alt="Next" onClick={handleNextStep} />
-            </div>
+            {currentStep === 1 && (
+                <div className="bottom-button">
+                    <input type="image" src="./images/btn-seat-next.png" alt="Next" onClick={handleNextStep} />
+                </div>
+            )}
+
+            {currentStep === 2 && (
+                <div className="bottom-button">
+                    <input type="image" src="./images/btn-seat-prev.png" alt="Prev" onClick={handleGoBack} />
+                </div>
+            )}
 
             {showAlert === 1 && (
                 <AlertBox
