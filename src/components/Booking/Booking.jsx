@@ -15,6 +15,7 @@ const Booking = () => {
 
     const [currentStep, setCurrentStep] = useState(1);
     const [seatAmounts, setSeatAmounts] = useState(seatTypes.map(() => 0));
+    const [selectedSeats, setSelectedSeats] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
 
     const handleGoBack = () => {
@@ -38,6 +39,22 @@ const Booking = () => {
         const newAmount = Math.min(Math.max(newSeatAmounts[index] + amount, 0), 3);
         newSeatAmounts[index] = newAmount;
         setSeatAmounts(newSeatAmounts);
+    };
+
+    const handleSeatSelection = (rowIndex, seatIndex) => {
+        const seatType = hallData.seatLayout[rowIndex][seatIndex].type;
+        const seatData = Seats.find((seat) => seat.name === seatTypes[seatType]);
+
+        if (!hallData.seatLayout[rowIndex][seatIndex].occupied) {
+            setSelectedSeats((prevSelectedSeats) => {
+                const seatKey = `${rowIndex}-${seatIndex}`;
+                if (prevSelectedSeats.includes(seatKey)) {
+                    return prevSelectedSeats.filter((key) => key !== seatKey);
+                } else {
+                    return [...prevSelectedSeats, seatKey];
+                }
+            });
+        }
     };
 
     return (
@@ -81,34 +98,34 @@ const Booking = () => {
                                         const rightSeatName = `${alphabet}${rightSeatNumber}`;
 
                                         return (
-                                            <div key={seatIndex} className="seat-pair">
-                                                <div className="seat">
+                                            <div key={seatIndex} className={`seat-pair ${selectedSeats.includes(`${rowIndex}-${seatIndex}`) ? "selected" : ""}`}>
+                                                <div className="seat" onClick={() => handleSeatSelection(rowIndex, seatIndex)}>
                                                     <img
                                                         src={
                                                             seat.occupied
                                                                 ? seatData.position[0].seat[2].occupied
-                                                                : seatData.position[0].seat[0].vacant
+                                                                : selectedSeats.includes(`${rowIndex}-${seatIndex}`)
+                                                                    ? seatData.position[0].seat[1].chosen
+                                                                    : seatData.position[0].seat[0].vacant
                                                         }
                                                         alt={`Left Seat ${rowIndex}-${seatIndex}`}
                                                     />
-                                                    <div
-                                                        className={`seat-name ${seat.occupied ? "occupied" : ""}`}
-                                                    >
+                                                    <div className={`seat-name ${seat.occupied ? "occupied" : ""}`}>
                                                         {leftSeatName}
                                                     </div>
                                                 </div>
-                                                <div className="seat">
+                                                <div className="seat" onClick={() => handleSeatSelection(rowIndex, seatIndex)}>
                                                     <img
                                                         src={
                                                             seat.occupied
                                                                 ? seatData.position[1].seat[2].occupied
-                                                                : seatData.position[1].seat[0].vacant
+                                                                : selectedSeats.includes(`${rowIndex}-${seatIndex}`)
+                                                                    ? seatData.position[1].seat[1].chosen
+                                                                    : seatData.position[1].seat[0].vacant
                                                         }
                                                         alt={`Right Seat ${rowIndex}-${seatIndex}`}
                                                     />
-                                                    <div
-                                                        className={`seat-name ${seat.occupied ? "occupied" : ""}`}
-                                                    >
+                                                    <div className={`seat-name ${seat.occupied ? "occupied" : ""}`}>
                                                         {rightSeatName}
                                                     </div>
                                                 </div>
@@ -119,28 +136,27 @@ const Booking = () => {
                             ))}
                     </div>
                     <div className="seat-summary">
-                        {seatTypes
-                            .map((seatType, index) => {
-                                const seatData = Seats.find((seat) => seat.name === seatType);
-                                if (!seatData) return null;
-                                const formattedPrice = Number(seatData.price).toLocaleString();
+                        {seatTypes.map((seatType, index) => {
+                            const seatData = Seats.find((seat) => seat.name === seatType);
+                            if (!seatData) return null;
+                            const formattedPrice = Number(seatData.price).toLocaleString();
 
-                                return (
-                                    seatAmounts[index] > 0 && (
-                                        <div key={index} className="seat-info">
-                                            <div className="seat-info-item">
-                                                {`${seatData.name} (${seatData.seats} Seats)`}
-                                            </div>
-                                            <div className="seat-info-item">
-                                                Seat No. <span>{seatAmounts[index]}</span>
-                                            </div>
-                                            <div className="seat-info-item">
-                                                Price: <span>{`${formattedPrice} Baht`}</span>
-                                            </div>
+                            return (
+                                seatAmounts[index] > 0 && (
+                                    <div key={index} className="seat-info">
+                                        <div className="seat-info-item">
+                                            {`${seatData.name} (${seatData.seats} Seats)`}
                                         </div>
-                                    )
-                                );
-                            })}
+                                        <div className="seat-info-item">
+                                            Seat No. <span>{seatAmounts[index]}</span>
+                                        </div>
+                                        <div className="seat-info-item">
+                                            Price: <span>{`${formattedPrice} Baht`}</span>
+                                        </div>
+                                    </div>
+                                )
+                            );
+                        })}
                     </div>
                 </div>
             )}
