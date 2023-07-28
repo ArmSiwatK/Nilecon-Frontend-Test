@@ -30,6 +30,58 @@ const Booking = () => {
         if (seatAmounts.every(amount => amount === 0)) {
             setShowAlert(true);
         } else {
+            // Calculate the total seats needed
+            const totalSeatsNeeded = seatAmounts.reduce((acc, amount) => acc + amount, 0);
+
+            // Collect available seats for each type
+            const availableSeatsByType = {};
+            hallData.seatLayout.forEach((row, rowIndex) => {
+                row.forEach((seat, seatIndex) => {
+                    if (!seat.occupied) {
+                        const seatType = seatTypes[seat.type];
+                        if (!availableSeatsByType[seatType]) {
+                            availableSeatsByType[seatType] = [];
+                        }
+                        availableSeatsByType[seatType].push({ rowIndex, seatIndex });
+                    }
+                });
+            });
+
+            // Randomly select seats while adhering to the conditions
+            const selectedSeats = [];
+            for (let i = 0; i < totalSeatsNeeded; i++) {
+                let selectedSeat = null;
+                for (let typeIndex = 0; typeIndex < seatTypes.length; typeIndex++) {
+                    const seatType = seatTypes[typeIndex];
+                    const maxAllowedSeats = seatAmounts[typeIndex];
+                    const selectedSeatsOfType = selectedSeats.filter(({ seatType }) => seatType === typeIndex);
+
+                    if (selectedSeatsOfType.length < maxAllowedSeats) {
+                        const availableSeatsOfType = availableSeatsByType[seatType];
+                        if (availableSeatsOfType && availableSeatsOfType.length > 0) {
+                            const randomAvailableSeatIndex = Math.floor(Math.random() * availableSeatsOfType.length);
+                            selectedSeat = availableSeatsOfType[randomAvailableSeatIndex];
+                            availableSeatsOfType.splice(randomAvailableSeatIndex, 1);
+                            selectedSeats.push({ ...selectedSeat, seatType: typeIndex });
+                            break;
+                        }
+                    }
+                }
+
+                if (selectedSeat === null) {
+                    // If we can't find a seat while adhering to the conditions, reset and try again
+                    selectedSeats.forEach(({ rowIndex, seatIndex, seatType }) => {
+                        availableSeatsByType[seatTypes[seatType]].push({ rowIndex, seatIndex });
+                    });
+                    selectedSeats.length = 0;
+                    i = -1; // Start over
+                }
+            }
+
+            // Set the randomly selected seats
+            setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
+
+            // Move to the next step
             setCurrentStep(prevStep => prevStep + 1);
         }
     };
