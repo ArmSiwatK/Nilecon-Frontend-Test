@@ -140,21 +140,22 @@ const Booking = () => {
                             const seatData = Seats.find((seat) => seat.name === seatType);
                             if (!seatData) return null;
                             const formattedPrice = Number(seatData.price).toLocaleString();
+                            const seatInstances = Array.from({ length: seatAmounts[index] }, (_, i) => i);
 
                             return (
-                                seatAmounts[index] > 0 && (
-                                    <div key={index} className="seat-info">
+                                seatInstances.map((instanceIndex) => (
+                                    <div key={`${seatType}-${instanceIndex}`} className="seat-info">
                                         <div className="seat-info-item">
                                             {`${seatData.name} (${seatData.seats} Seats)`}
                                         </div>
                                         <div className="seat-info-item">
-                                            Seat No. <span>{seatAmounts[index]}</span>
+                                            Seat No. <span></span>
                                         </div>
                                         <div className="seat-info-item">
                                             Price: <span>{`${formattedPrice} Baht`}</span>
                                         </div>
                                     </div>
-                                )
+                                ))
                             );
                         })}
                     </div>
