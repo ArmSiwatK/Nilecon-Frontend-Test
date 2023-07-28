@@ -3,6 +3,7 @@ import { ScreenContext } from '../../ScreenContext';
 import BookingInfo from './BookingInfo';
 import SeatChoices from './SeatChoices';
 import SeatPosition from './SeatPosition';
+import { getAvailableSeatsByType, selectSeats } from './SeatHelpers';
 import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';
 import './Booking.scss';
@@ -27,7 +28,7 @@ const Booking = () => {
     };
 
     const handleNextStep = () => {
-        const availableSeatsByType = getAvailableSeatsByType();
+        const availableSeatsByType = getAvailableSeatsByType(hallData, seatTypes);
         const isAnySeatAmountExceeded = seatAmounts.some((amount, index) => amount > availableSeatsByType[seatTypes[index]].length);
 
         if (isAnySeatAmountExceeded) {
@@ -35,7 +36,7 @@ const Booking = () => {
             return;
         }
 
-        const selectedSeats = selectSeats(availableSeatsByType);
+        const selectedSeats = selectSeats(seatTypes, seatAmounts, availableSeatsByType);
         if (selectedSeats.length === 0) {
             setShowAlert(1);
             return;
@@ -72,75 +73,6 @@ const Booking = () => {
                 setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, selectedSeatKey]);
             }
         }
-    };
-
-    const getAvailableSeatsByType = () => {
-        const availableSeatsByType = {};
-        hallData.seatLayout.forEach((row, rowIndex) => {
-            row.forEach((seat, seatIndex) => {
-                if (!seat.occupied) {
-                    const seatType = seatTypes[seat.type];
-                    if (!availableSeatsByType[seatType]) {
-                        availableSeatsByType[seatType] = [];
-                    }
-                    availableSeatsByType[seatType].push({ rowIndex, seatIndex });
-                }
-            });
-        });
-        return availableSeatsByType;
-    };
-
-    const selectSeats = (availableSeatsByType) => {
-        const totalSeatsNeeded = seatAmounts.reduce((acc, amount) => acc + amount, 0);
-        const selectedSeats = [];
-
-        for (let i = 0; i < totalSeatsNeeded; i++) {
-            let selectedSeat = null;
-
-            for (let typeIndex = 0; typeIndex < seatTypes.length; typeIndex++) {
-                const seatType = seatTypes[typeIndex];
-                const maxAllowedSeats = seatAmounts[typeIndex];
-                const selectedSeatsOfType = selectedSeats.filter(({ seatType }) => seatType === typeIndex);
-
-                if (selectedSeatsOfType.length < maxAllowedSeats) {
-                    const availableSeatsOfType = availableSeatsByType[seatType];
-                    if (availableSeatsOfType && availableSeatsOfType.length > 0) {
-                        const randomAvailableSeatIndex = Math.floor(Math.random() * availableSeatsOfType.length);
-                        selectedSeat = availableSeatsOfType[randomAvailableSeatIndex];
-                        availableSeatsOfType.splice(randomAvailableSeatIndex, 1);
-                        selectedSeats.push({ ...selectedSeat, seatType: typeIndex });
-                        break;
-                    }
-                }
-            }
-
-            if (selectedSeat === null) {
-                selectedSeats.forEach(({ rowIndex, seatIndex, seatType }) => {
-                    availableSeatsByType[seatTypes[seatType]].push({ rowIndex, seatIndex });
-                });
-                selectedSeats.length = 0;
-                i = -1;
-            }
-        }
-
-        return selectedSeats;
-    };
-
-    const getSelectedSeatNames = (selectedSeats, seatType) => {
-        return selectedSeats
-            .map((selectedSeat) => {
-                const [rowIndex, seatIndex] = selectedSeat.split('-');
-                const seat = hallData.seatLayout[rowIndex][seatIndex];
-                if (seatTypes[seat.type] === seatType) {
-                    const alphabetIndex = hallData.seatLayout.length - rowIndex - 1;
-                    const alphabet = String.fromCharCode(65 + alphabetIndex);
-                    const leftSeatNumber = seatIndex * 2 + 1;
-                    const rightSeatNumber = seatIndex * 2 + 2;
-                    return `${alphabet}${leftSeatNumber}, ${alphabet}${rightSeatNumber}`;
-                }
-                return null;
-            })
-            .filter((seatName) => seatName !== null);
     };
 
     return (
