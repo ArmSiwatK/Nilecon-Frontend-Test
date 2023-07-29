@@ -326,4 +326,62 @@
       }
     }
   }
+
+  .confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .confirm-movie-info {
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      width: 100%;
+
+      .movie-cover {
+        background-image: url("./images/movie-cover-background.png");
+        background-repeat: no-repeat;
+        width: 140px;
+      }
+
+      .movie-info {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+
+        .movie-name {
+          font-size: 24px;
+          color: #f1e3c2;
+        }
+
+        .movie-info-icons {
+          display: flex;
+          gap: 8px;
+
+          img {
+            width: 40px;
+          }
+
+          .movie-type {
+            color: #b0b0b0;
+          }
+        }
+
+        .movie-details {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          font-size: 18px;
+          color: #f1e3c2;
+
+          .movie-details-cell {
+            span {
+              color: #8e8e8e;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

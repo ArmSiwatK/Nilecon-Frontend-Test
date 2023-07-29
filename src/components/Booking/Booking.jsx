@@ -3,9 +3,11 @@ import { ScreenContext } from '../../ScreenContext';
 import BookingInfo from './BookingInfo';
 import SeatChoices from './SeatChoices';
 import SeatPosition from './SeatPosition';
+import ConfirmBooking from './ConfirmBooking';
 import { getAvailableSeatsByType, selectSeats } from './SeatHelpers';
 import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';
+import MovieData from '../../assets/MovieData.json';
 import './Booking.scss';
 
 const Booking = () => {
@@ -13,6 +15,7 @@ const Booking = () => {
 
     const hallData = Halls.find((hall) => hall.number === selectedScreen.hall);
     const seatTypes = hallData ? hallData.seatTypes : [];
+    const lastScreenTime = selectedScreen || MovieData.screenTime[MovieData.screenTime.length - 1];
 
     const [currentStep, setCurrentStep] = useState(1);
     const [seatAmounts, setSeatAmounts] = useState(seatTypes.map(() => 0));
@@ -22,6 +25,15 @@ const Booking = () => {
     const [nameError, setNameError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [phoneError, setPhoneError] = useState(null);
+
+    const [formData, setFormData] = useState({
+        name: null,
+        email: null,
+        phone: null,
+        seatNo: null,
+        totalPrice: null,
+    });
+    const [totalPrice, setTotalPrice] = useState(null);
 
     const handleGoBack = () => {
         currentStep === 1 ? window.history.back() : setCurrentStep((prevStep) => prevStep - 1);
@@ -39,6 +51,15 @@ const Booking = () => {
         const selectedSeats = selectSeats(seatTypes, seatAmounts, availableSeatsByType);
         selectedSeats.length === 0 ? setShowAlert(1) : setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
         setCurrentStep((prevStep) => prevStep + 1);
+    };
+
+    const formattedDate = () => {
+        const today = new Date();
+        const day = today.getDate();
+        const month = today.toLocaleString('default', { month: 'long' });
+        const year = today.getFullYear();
+
+        return `${day} ${month} ${year}`;
     };
 
     const handleSeatAmountChange = (index, amount) => {
@@ -62,8 +83,10 @@ const Booking = () => {
 
             if (isAlreadySelected) {
                 setSelectedSeats((prevSelectedSeats) => prevSelectedSeats.filter((key) => key !== selectedSeatKey));
+                setFormData((prevFormData) => ({ ...prevFormData, seatNo: null }));
             } else if (selectedSeatsOfType.length < seatAmounts[type]) {
                 setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, selectedSeatKey]);
+                setFormData((prevFormData) => ({ ...prevFormData, seatNo: selectedSeatKey }));
             }
         }
     };
@@ -79,12 +102,15 @@ const Booking = () => {
 
         switch (name) {
             case 'name':
+                setFormData((prevFormData) => ({ ...prevFormData, name: value }));
                 setNameError(errorMessages.name);
                 break;
             case 'email':
+                setFormData((prevFormData) => ({ ...prevFormData, email: value }));
                 setEmailError(errorMessages.email);
                 break;
             case 'phone':
+                setFormData((prevFormData) => ({ ...prevFormData, phone: value }));
                 setPhoneError(errorMessages.phone);
                 break;
             default:
@@ -98,7 +124,6 @@ const Booking = () => {
         }
     };
 
-
     const handleReserveSeats = () => {
         setCurrentStep(3);
     };
@@ -109,7 +134,10 @@ const Booking = () => {
                 <input type="image" src="./images/btn-back.png" onClick={handleGoBack} alt="Back" />
             </div>
 
-            <BookingInfo selectedScreen={selectedScreen} />
+            <BookingInfo
+                lastScreenTime={lastScreenTime}
+                formattedDate={formattedDate}
+            />
 
             <div className="booking-step">
                 <img src={`./images/booking-step-${currentStep}.png`} />
@@ -134,70 +162,40 @@ const Booking = () => {
             )}
 
             {currentStep === 2 && (
-                <div className="confirm-booking">
-                    <img className="confirm-title" src="./images/confirm-booking.png" />
-                    <div className="confirm-input">
-
-                        <div className="input-container">
-                            <input
-                                type="text"
-                                className={`input-box ${nameError ? 'invalid' : ''}`}
-                                id="name"
-                                name="name"
-                                placeholder="Your Name"
-                                required
-                                onChange={handleInputChange}
-                            />
-                            {nameError && <div className="error-message">{nameError}</div>}
-                        </div>
-
-                        <div className="input-container">
-                            <input
-                                type="email"
-                                className={`input-box ${emailError ? 'invalid' : ''}`}
-                                id="email"
-                                name="email"
-                                placeholder="Your Email"
-                                required
-                                onChange={handleInputChange}
-                            />
-                            {emailError && <div className="error-message">{emailError}</div>}
-                        </div>
-
-                        <div className="input-container">
-                            <input
-                                type="tel"
-                                className={`input-box ${phoneError ? 'invalid' : ''}`}
-                                id="phone"
-                                name="phone"
-                                placeholder="Phone No."
-                                required
-                                onChange={handleInputChange}
-                            />
-                            {phoneError && <div className="error-message">{phoneError}</div>}
-                        </div>
-
-                        <label>
-                            <input type="checkbox" id="remember-me" name="remember-me" />
-                            <span>Remember Me</span>
-                        </label>
-
-                        <input
-                            type="image"
-                            id="reserve"
-                            src="./images/btn-reserve.png"
-                            alt="Reserve"
-                            value="Reserve"
-                            disabled={nameError || emailError || phoneError}
-                            onClick={handleReserveSeats}
-                        />
-                    </div>
-                </div>
+                <ConfirmBooking
+                    nameError={nameError}
+                    emailError={emailError}
+                    phoneError={phoneError}
+                    handleInputChange={handleInputChange}
+                    handleReserveSeats={handleReserveSeats}
+                />
             )}
 
             {currentStep === 3 && (
                 <div className="confirmation">
-                    {/* Confirmation rendering */}
+                    <img src="./images/booking-completed.png" />
+                    <div className="confirm-movie-info">
+                        <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
+                        <div className="movie-info">
+                            <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
+                            <div className="movie-info-icons">
+                                <img className="movie-rating" src="./images/rate-general.png" />
+                                <img className="clock-movie-type" src="./images/type-digital.png" />
+                                <div className="movie-type">{MovieData.movieType}</div>
+                            </div>
+                            <div className="movie-details">
+                                <div className="movie-details-cell"><span>Date:</span> {formattedDate()}</div>
+                                <div className="movie-details-cell"><span>Hall:</span> {lastScreenTime.hall}</div>
+                                <div className="movie-details-cell"><span>Total Price:</span> {lastScreenTime.time}</div>
+                                <div className="movie-details-cell"><span>Time:</span> {lastScreenTime.time}</div>
+                                <div className="movie-details-cell"><span>Seat No.</span> {formData.seatNo}</div>
+                                <div className="movie-details-cell"></div>
+                                <div className="movie-details-cell"><span>Your Name:</span> {formData.name}</div>
+                                <div className="movie-details-cell"><span>Phone No.</span> {formData.phone}</div>
+                                <div className="movie-details-cell"><span>Booking No.</span> {lastScreenTime.hall}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
 

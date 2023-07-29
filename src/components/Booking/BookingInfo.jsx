@@ -2,18 +2,7 @@ import React from 'react';
 import MovieData from '../../assets/MovieData.json';
 import './Booking.scss';
 
-const BookingInfo = ({ selectedScreen }) => {
-    const lastScreenTime = selectedScreen || MovieData.screenTime[MovieData.screenTime.length - 1];
-
-    const formattedDate = () => {
-        const today = new Date();
-        const day = today.getDate();
-        const month = today.toLocaleString('default', { month: 'long' });
-        const year = today.getFullYear();
-
-        return `${day} ${month} ${year}`;
-    };
-
+const BookingInfo = ({ lastScreenTime, formattedDate }) => {
     return (
         <div className="booking-info">
             <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
