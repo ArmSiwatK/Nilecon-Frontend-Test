@@ -379,6 +379,10 @@
               color: #8e8e8e;
               margin-right: 5px;
             }
+
+            &:nth-child(5) {
+              grid-column: span 2;
+            }
           }
         }
       }
