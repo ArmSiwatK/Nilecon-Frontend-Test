@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ScreenContext } from '../../ScreenContext';
 import BookingInfo from './BookingInfo';
 import SeatChoices from './SeatChoices';
@@ -20,20 +20,19 @@ const Booking = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [seatAmounts, setSeatAmounts] = useState(seatTypes.map(() => 0));
     const [selectedSeats, setSelectedSeats] = useState([]);
+    const [selectedSeatNames, setSelectedSeatNames] = useState([]);
     const [showAlert, setShowAlert] = useState(0);
 
     const [nameError, setNameError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [phoneError, setPhoneError] = useState(null);
 
+    const [totalPrice, setTotalPrice] = useState(null);
     const [formData, setFormData] = useState({
         name: null,
         email: null,
         phone: null,
-        seatNo: null,
-        totalPrice: null,
     });
-    const [totalPrice, setTotalPrice] = useState(null);
 
     const handleGoBack = () => {
         currentStep === 1 ? window.history.back() : setCurrentStep((prevStep) => prevStep - 1);
@@ -76,17 +75,15 @@ const Booking = () => {
             const selectedSeatKey = `${rowIndex}-${seatIndex}`;
             const isAlreadySelected = selectedSeats.includes(selectedSeatKey);
 
-            const selectedSeatsOfType = selectedSeats.filter(key => {
+            const selectedSeatsOfType = selectedSeats.filter((key) => {
                 const [selectedRowIndex, selectedSeatIndex] = key.split('-');
                 return hallData.seatLayout[selectedRowIndex][selectedSeatIndex].type === type;
             });
 
             if (isAlreadySelected) {
                 setSelectedSeats((prevSelectedSeats) => prevSelectedSeats.filter((key) => key !== selectedSeatKey));
-                setFormData((prevFormData) => ({ ...prevFormData, seatNo: null }));
             } else if (selectedSeatsOfType.length < seatAmounts[type]) {
                 setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, selectedSeatKey]);
-                setFormData((prevFormData) => ({ ...prevFormData, seatNo: selectedSeatKey }));
             }
         }
     };
@@ -128,6 +125,23 @@ const Booking = () => {
         setCurrentStep(3);
     };
 
+    useEffect(() => {
+        const newSelectedSeatNames = selectedSeats.map((selectedSeat) => {
+            const [rowIndex, seatIndex] = selectedSeat.split('-');
+            const seat = hallData.seatLayout[rowIndex][seatIndex];
+            if (!seat.occupied) {
+                const alphabetIndex = hallData.seatLayout.length - rowIndex - 1;
+                const alphabet = String.fromCharCode(65 + alphabetIndex);
+                const leftSeatNumber = seatIndex * 2 + 1;
+                const rightSeatNumber = seatIndex * 2 + 2;
+                return `${alphabet}${leftSeatNumber}, ${alphabet}${rightSeatNumber}`;
+            }
+            return null;
+        });
+
+        setSelectedSeatNames(newSelectedSeatNames.filter((seatName) => seatName !== null));
+    }, [selectedSeats, hallData]);
+
     return (
         <div className="booking-container">
             <div className="back-button">
@@ -154,6 +168,7 @@ const Booking = () => {
             {currentStep === 2 && (
                 <SeatPosition
                     selectedSeats={selectedSeats}
+                    selectedSeatNames={selectedSeatNames}
                     seatTypes={seatTypes}
                     handleSeatSelection={handleSeatSelection}
                     seatAmounts={seatAmounts}
@@ -188,7 +203,7 @@ const Booking = () => {
                                 <div className="movie-details-cell"><span>Hall:</span> {lastScreenTime.hall}</div>
                                 <div className="movie-details-cell"><span>Total Price:</span> {lastScreenTime.time}</div>
                                 <div className="movie-details-cell"><span>Time:</span> {lastScreenTime.time}</div>
-                                <div className="movie-details-cell"><span>Seat No.</span> {formData.seatNo}</div>
+                                <div className="movie-details-cell"><span>Seat No.</span> {selectedSeatNames.join(', ')}</div>
                                 <div className="movie-details-cell"></div>
                                 <div className="movie-details-cell"><span>Your Name:</span> {formData.name}</div>
                                 <div className="movie-details-cell"><span>Phone No.</span> {formData.phone}</div>

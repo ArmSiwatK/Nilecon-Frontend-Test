@@ -3,28 +3,12 @@ import Seats from '../../assets/Seats.json';
 
 const SeatPosition = ({
     selectedSeats,
+    selectedSeatNames,
     seatTypes,
     handleSeatSelection,
     seatAmounts,
     hallData
 }) => {
-    const getSelectedSeatNames = (selectedSeats, seatType) => {
-        return selectedSeats
-            .map((selectedSeat) => {
-                const [rowIndex, seatIndex] = selectedSeat.split('-');
-                const seat = hallData.seatLayout[rowIndex][seatIndex];
-                if (seatTypes[seat.type] === seatType) {
-                    const alphabetIndex = hallData.seatLayout.length - rowIndex - 1;
-                    const alphabet = String.fromCharCode(65 + alphabetIndex);
-                    const leftSeatNumber = seatIndex * 2 + 1;
-                    const rightSeatNumber = seatIndex * 2 + 2;
-                    return `${alphabet}${leftSeatNumber}, ${alphabet}${rightSeatNumber}`;
-                }
-                return null;
-            })
-            .filter((seatName) => seatName !== null);
-    };
-
     return (
         <div className="seat-position">
             <img src="./images/theater-screen.png" />
@@ -95,7 +79,6 @@ const SeatPosition = ({
                     if (!seatData) return null;
                     const formattedPrice = Number(seatData.price).toLocaleString();
                     const seatInstances = Array.from({ length: seatAmounts[index] }, (_, i) => i);
-                    const selectedSeatNames = getSelectedSeatNames(selectedSeats, seatType);
 
                     return (
                         seatInstances.map((instanceIndex) => (
