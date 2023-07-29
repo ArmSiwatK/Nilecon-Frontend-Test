@@ -3,12 +3,13 @@
 */
 
 import React, { useState, useEffect, useContext } from 'react';
-import { ScreenContext } from '../../ScreenContext';
 import BookingInfo from './BookingInfo';
 import SeatChoices from './SeatChoices';
 import SeatPosition from './SeatPosition';
 import ConfirmBooking from './ConfirmBooking';
+import Confirmation from './Confirmation';
 import { formattedDate, getAvailableSeatsByType, selectSeats } from './SeatHelpers';
+import { ScreenContext } from '../../ScreenContext';
 import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';
 import MovieData from '../../assets/MovieData.json';
@@ -220,31 +221,13 @@ const Booking = () => {
             )}
 
             {currentStep === 3 && (
-                <div className="confirmation">
-                    <img src="./images/booking-completed.png" />
-                    <div className="confirm-movie-info">
-                        <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
-                        <div className="movie-info">
-                            <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
-                            <div className="movie-info-icons">
-                                <img className="movie-rating" src="./images/rate-general.png" />
-                                <img className="clock-movie-type" src="./images/type-digital.png" />
-                                <div className="movie-type">{MovieData.movieType}</div>
-                            </div>
-                            <div className="movie-details">
-                                <div className="movie-details-cell"><span>Date:</span> {formattedDate()}</div>
-                                <div className="movie-details-cell"><span>Hall:</span> {lastScreenTime.hall}</div>
-                                <div className="movie-details-cell"><span>Total Price:</span> {totalPrice.toLocaleString()} Baht</div>
-                                <div className="movie-details-cell"><span>Time:</span> {lastScreenTime.time}</div>
-                                <div className="movie-details-cell"><span>Seat No.</span> {selectedSeatNames.join(', ')}</div>
-                                <div className="movie-details-cell"></div>
-                                <div className="movie-details-cell"><span>Your Name:</span> {formData.name}</div>
-                                <div className="movie-details-cell"><span>Phone No.</span> {formData.phone}</div>
-                                <div className="movie-details-cell"><span>Booking No.</span> {lastScreenTime.hall}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Confirmation
+                    formattedDate={formattedDate}
+                    lastScreenTime={lastScreenTime}
+                    selectedSeatNames={selectedSeatNames}
+                    formData={formData}
+                    totalPrice={totalPrice}
+                />
             )}
 
             {currentStep === 1 && (
