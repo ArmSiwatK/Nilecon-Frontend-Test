@@ -1,3 +1,7 @@
+/*
+<--------------- Imports --------------->
+*/
+
 import React, { useState, useEffect, useContext } from 'react';
 import { ScreenContext } from '../../ScreenContext';
 import BookingInfo from './BookingInfo';
@@ -11,7 +15,16 @@ import MovieData from '../../assets/MovieData.json';
 import Seats from '../../assets/Seats.json';
 import './Booking.scss';
 
+/*
+<--------------- Component --------------->
+*/
+
 const Booking = () => {
+
+    /*
+    <--------------- Context, Variables, and States --------------->
+    */
+
     const { selectedScreen } = useContext(ScreenContext);
 
     const hallData = Halls.find((hall) => hall.number === selectedScreen.hall);
@@ -43,6 +56,10 @@ const Booking = () => {
         })
         .reduce((total, price) => total + price, 0);
 
+    /*
+    <--------------- Navigation Functions --------------->
+    */
+
     const handleGoBack = () => {
         currentStep === 1 ? window.history.back() : setCurrentStep((prevStep) => prevStep - 1);
     };
@@ -60,6 +77,14 @@ const Booking = () => {
         selectedSeats.length === 0 ? setShowAlert(1) : setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
         setCurrentStep((prevStep) => prevStep + 1);
     };
+
+    const handleReserveSeats = () => {
+        setCurrentStep(3);
+    };
+
+    /*
+    <--------------- Seat Functions --------------->
+    */
 
     const handleSeatAmountChange = (index, amount) => {
         const newSeatAmounts = [...seatAmounts];
@@ -87,6 +112,10 @@ const Booking = () => {
             }
         }
     };
+
+    /*
+    <--------------- Form Function --------------->
+    */
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -121,9 +150,9 @@ const Booking = () => {
         }
     };
 
-    const handleReserveSeats = () => {
-        setCurrentStep(3);
-    };
+    /*
+    <--------------- useEffect Hook --------------->
+    */
 
     useEffect(() => {
         const newSelectedSeatNames = selectedSeats.map((selectedSeat) => {
@@ -141,6 +170,10 @@ const Booking = () => {
 
         setSelectedSeatNames(newSelectedSeatNames.filter((seatName) => seatName !== null));
     }, [selectedSeats, hallData]);
+
+    /*
+    <--------------- JSX Structure --------------->
+    */
 
     return (
         <div className="booking-container">
