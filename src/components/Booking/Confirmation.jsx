@@ -33,6 +33,16 @@ const Confirmation = ({ formattedDate, lastScreenTime, selectedSeatNames, formDa
                     </div>
                 </div>
             </div>
+            <div className="confirm-bottom">
+                <div className="qr-container">
+                    <img src="./images/qr-code.png" />
+                    <div className="qr-subtitle">Booking No. {bookingNo}</div>
+                </div>
+                <div className="warning-messages">
+                    <div>Please pay for your reserved tickets at Box Office 60 minutes before showtime</div>
+                    <div>Bookings will be automatically cancelled if not issued 60 minutes before showtime</div>
+                </div>
+            </div>
         </div>
     );
 };

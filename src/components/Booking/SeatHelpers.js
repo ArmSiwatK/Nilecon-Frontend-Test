@@ -1,4 +1,4 @@
-const formattedDate = () => {
+export const formattedDate = () => {
     const today = new Date();
     const day = today.getDate();
     const month = today.toLocaleString('default', { month: 'long' });
@@ -7,12 +7,12 @@ const formattedDate = () => {
     return `${day} ${month} ${year}`;
 };
 
-const generateRandomSixDigitNumber = () => {
+export const generateRandomSixDigitNumber = () => {
     const randomNumber = Math.floor(100000 + Math.random() * 900000);
     return randomNumber;
 };
 
-const getAvailableSeatsByType = (hallData, seatTypes) => {
+export const getAvailableSeatsByType = (hallData, seatTypes) => {
     const availableSeatsByType = {};
     hallData.seatLayout.forEach((row, rowIndex) => {
         row.forEach((seat, seatIndex) => {
@@ -26,7 +26,7 @@ const getAvailableSeatsByType = (hallData, seatTypes) => {
     return availableSeatsByType;
 };
 
-const selectSeats = (seatTypes, seatAmounts, availableSeatsByType) => {
+export const selectSeats = (seatTypes, seatAmounts, availableSeatsByType) => {
     const totalSeatsNeeded = seatAmounts.reduce((acc, amount) => acc + amount, 0);
     const selectedSeats = [];
 
@@ -60,5 +60,3 @@ const selectSeats = (seatTypes, seatAmounts, availableSeatsByType) => {
 
     return selectedSeats;
 };
-
-export { formattedDate, generateRandomSixDigitNumber, getAvailableSeatsByType, selectSeats };
