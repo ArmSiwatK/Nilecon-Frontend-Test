@@ -17,6 +17,10 @@ $grey-border: 1px solid rgba(142, 142, 142, 0.35);
     overflow: visible;
     color: #8e8e8e;
 
+    @media only screen and (max-width: 500px) {
+      padding: 0;
+    }
+
     &:hover {
       color: #c1ad7f;
 
@@ -31,6 +35,10 @@ $grey-border: 1px solid rgba(142, 142, 142, 0.35);
         background-repeat: no-repeat;
         background-position: center top;
         z-index: 1;
+
+        @media only screen and (max-width: 1100px) {
+          bottom: 10px;
+        }
       }
     }
   }
