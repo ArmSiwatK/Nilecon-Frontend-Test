@@ -7,7 +7,7 @@ const SeatPosition = ({
     seatTypes,
     handleSeatSelection,
     seatAmounts,
-    hallData
+    hallData,
 }) => {
     return (
         <div className="seat-position">

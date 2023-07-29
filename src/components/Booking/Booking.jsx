@@ -4,10 +4,11 @@ import BookingInfo from './BookingInfo';
 import SeatChoices from './SeatChoices';
 import SeatPosition from './SeatPosition';
 import ConfirmBooking from './ConfirmBooking';
-import { getAvailableSeatsByType, selectSeats } from './SeatHelpers';
+import { formattedDate, getAvailableSeatsByType, selectSeats } from './SeatHelpers';
 import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';
 import MovieData from '../../assets/MovieData.json';
+import Seats from '../../assets/Seats.json';
 import './Booking.scss';
 
 const Booking = () => {
@@ -27,12 +28,20 @@ const Booking = () => {
     const [emailError, setEmailError] = useState(null);
     const [phoneError, setPhoneError] = useState(null);
 
-    const [totalPrice, setTotalPrice] = useState(null);
     const [formData, setFormData] = useState({
         name: null,
         email: null,
         phone: null,
     });
+
+    const totalPrice = selectedSeats
+        .map(selectedSeat => {
+            const [rowIndex, seatIndex] = selectedSeat.split('-');
+            const seatType = hallData.seatLayout[rowIndex][seatIndex].type;
+            const seatData = Seats.find(seat => seat.name === seatTypes[seatType]);
+            return seatData ? parseFloat(seatData.price) : 0;
+        })
+        .reduce((total, price) => total + price, 0);
 
     const handleGoBack = () => {
         currentStep === 1 ? window.history.back() : setCurrentStep((prevStep) => prevStep - 1);
@@ -50,15 +59,6 @@ const Booking = () => {
         const selectedSeats = selectSeats(seatTypes, seatAmounts, availableSeatsByType);
         selectedSeats.length === 0 ? setShowAlert(1) : setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
         setCurrentStep((prevStep) => prevStep + 1);
-    };
-
-    const formattedDate = () => {
-        const today = new Date();
-        const day = today.getDate();
-        const month = today.toLocaleString('default', { month: 'long' });
-        const year = today.getFullYear();
-
-        return `${day} ${month} ${year}`;
     };
 
     const handleSeatAmountChange = (index, amount) => {
@@ -201,7 +201,7 @@ const Booking = () => {
                             <div className="movie-details">
                                 <div className="movie-details-cell"><span>Date:</span> {formattedDate()}</div>
                                 <div className="movie-details-cell"><span>Hall:</span> {lastScreenTime.hall}</div>
-                                <div className="movie-details-cell"><span>Total Price:</span> {lastScreenTime.time}</div>
+                                <div className="movie-details-cell"><span>Total Price:</span> {totalPrice.toLocaleString()} Baht</div>
                                 <div className="movie-details-cell"><span>Time:</span> {lastScreenTime.time}</div>
                                 <div className="movie-details-cell"><span>Seat No.</span> {selectedSeatNames.join(', ')}</div>
                                 <div className="movie-details-cell"></div>

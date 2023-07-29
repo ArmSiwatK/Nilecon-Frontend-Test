@@ -1,3 +1,12 @@
+const formattedDate = () => {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.toLocaleString('default', { month: 'long' });
+    const year = today.getFullYear();
+
+    return `${day} ${month} ${year}`;
+};
+
 const getAvailableSeatsByType = (hallData, seatTypes) => {
     const availableSeatsByType = {};
     hallData.seatLayout.forEach((row, rowIndex) => {
@@ -47,4 +56,4 @@ const selectSeats = (seatTypes, seatAmounts, availableSeatsByType) => {
     return selectedSeats;
 };
 
-export { getAvailableSeatsByType, selectSeats };
+export { formattedDate, getAvailableSeatsByType, selectSeats };
