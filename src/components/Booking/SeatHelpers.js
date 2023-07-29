@@ -7,6 +7,11 @@ const formattedDate = () => {
     return `${day} ${month} ${year}`;
 };
 
+const generateRandomSixDigitNumber = () => {
+    const randomNumber = Math.floor(100000 + Math.random() * 900000);
+    return randomNumber;
+};
+
 const getAvailableSeatsByType = (hallData, seatTypes) => {
     const availableSeatsByType = {};
     hallData.seatLayout.forEach((row, rowIndex) => {
@@ -56,4 +61,4 @@ const selectSeats = (seatTypes, seatAmounts, availableSeatsByType) => {
     return selectedSeats;
 };
 
-export { formattedDate, getAvailableSeatsByType, selectSeats };
+export { formattedDate, generateRandomSixDigitNumber, getAvailableSeatsByType, selectSeats };

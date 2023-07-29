@@ -1,7 +1,10 @@
 import React from 'react';
+import { generateRandomSixDigitNumber } from './SeatHelpers';
 import MovieData from '../../assets/MovieData.json';
 
 const Confirmation = ({ formattedDate, lastScreenTime, selectedSeatNames, formData, totalPrice }) => {
+    const bookingNo = generateRandomSixDigitNumber();
+
     return (
         <div className="confirmation">
             <img src="./images/booking-completed.png" />
@@ -22,7 +25,7 @@ const Confirmation = ({ formattedDate, lastScreenTime, selectedSeatNames, formDa
                         <div className="movie-details-cell"><span>Seat No.</span> {selectedSeatNames.join(', ')}</div>
                         <div className="movie-details-cell"><span>Your Name:</span> {formData.name}</div>
                         <div className="movie-details-cell"><span>Phone No.</span> {formData.phone}</div>
-                        <div className="movie-details-cell"><span>Booking No.</span> {lastScreenTime.hall}</div>
+                        <div className="movie-details-cell"><span>Booking No.</span> {bookingNo}</div>
                     </div>
                 </div>
             </div>
