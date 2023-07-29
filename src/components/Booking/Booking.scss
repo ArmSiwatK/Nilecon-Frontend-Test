@@ -331,12 +331,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    border: 1px solid #3d3d3d;
+    background-color: #0f0f0f;
+    padding: 30px 50px;
+
+    .confirm-title {
+      width: 1050px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #3d3d3d;
+      text-align: center;
+    }
 
     .confirm-movie-info {
       display: flex;
       justify-content: space-around;
       gap: 30px;
-      width: 100%;
+      width: 1010px;
+      padding: 50px 20px;
+      border-bottom: 1px solid #3d3d3d;
 
       .movie-cover {
         background-image: url("./images/movie-cover-background.png");
@@ -347,30 +360,37 @@
       .movie-info {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 40px;
         width: 100%;
 
-        .movie-name {
-          font-size: 24px;
-          color: #f1e3c2;
-        }
-
-        .movie-info-icons {
+        .movie-information {
           display: flex;
-          gap: 8px;
+          flex-direction: column;
+          gap: 10px;
 
-          img {
-            width: 40px;
+          .movie-name {
+            font-size: 24px;
+            color: #f1e3c2;
           }
 
-          .movie-type {
-            color: #b0b0b0;
+          .movie-info-icons {
+            display: flex;
+            gap: 8px;
+
+            img {
+              width: 40px;
+            }
+
+            .movie-type {
+              color: #b0b0b0;
+            }
           }
         }
 
         .movie-details {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
+          gap: 20px 0px;
           font-size: 18px;
           color: #f1e3c2;
 

@@ -7,15 +7,19 @@ const Confirmation = ({ formattedDate, lastScreenTime, selectedSeatNames, formDa
 
     return (
         <div className="confirmation">
-            <img src="./images/booking-completed.png" />
+            <div className="confirm-title">
+                <img src="./images/booking-completed.png" />
+            </div>
             <div className="confirm-movie-info">
                 <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
                 <div className="movie-info">
-                    <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
-                    <div className="movie-info-icons">
-                        <img className="movie-rating" src="./images/rate-general.png" />
-                        <img className="clock-movie-type" src="./images/type-digital.png" />
-                        <div className="movie-type">{MovieData.movieType}</div>
+                    <div className="movie-information">
+                        <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
+                        <div className="movie-info-icons">
+                            <img className="movie-rating" src="./images/rate-general.png" />
+                            <img className="clock-movie-type" src="./images/type-digital.png" />
+                            <div className="movie-type">{MovieData.movieType}</div>
+                        </div>
                     </div>
                     <div className="movie-details">
                         <div className="movie-details-cell"><span>Date:</span> {formattedDate()}</div>
