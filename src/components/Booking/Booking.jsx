@@ -75,9 +75,15 @@ const Booking = () => {
         }
 
         const selectedSeats = selectSeats(seatTypes, seatAmounts, availableSeatsByType);
-        selectedSeats.length === 0 ? setShowAlert(1) : setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
+        if (selectedSeats.length === 0) {
+            setShowAlert(1);
+            return;
+        }
+
+        setSelectedSeats(selectedSeats.map(({ rowIndex, seatIndex }) => `${rowIndex}-${seatIndex}`));
         setCurrentStep((prevStep) => prevStep + 1);
     };
+
 
     const handleReserveSeats = () => {
         setCurrentStep(3);
