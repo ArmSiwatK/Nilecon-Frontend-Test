@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import BannerCarousel from "../components/Carousel/Carousel";
 import FeatureShows from "../components/FeatureShows/FeatureShows";
 import Footer from "../components/Footer/Footer";
+import MenuMobile from "../components/MenuMobile/MenuMobile";
 
 function Home() {
     return (
@@ -15,6 +16,7 @@ function Home() {
             <BannerCarousel />
             <FeatureShows />
             <Footer />
+            <MenuMobile />
         </>
     )
 }
