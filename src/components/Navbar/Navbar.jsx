@@ -52,23 +52,21 @@ const Navbar = () => {
                         {item.displayName}
                     </NavLink>
                 ))}
-            {!isMobile && (
-                <div className={`language-dropdown ${dropdownOpen ? 'open' : ''}`} onClick={handleDropdownClick}>
-                    <span className="selected-language">{language}</span>
-                    <span className="dropdown-icon">{dropdownOpen ? '⏶' : '⏷'}</span>
-                    {dropdownOpen && (
-                        <div className="dropdown-content">
-                            {languages
-                                .filter((lang) => lang !== language)
-                                .map((lang) => (
-                                    <div key={lang} onClick={() => handleLanguageChange(lang)}>
-                                        {lang}
-                                    </div>
-                                ))}
-                        </div>
-                    )}
-                </div>
-            )}
+            <div className={`language-dropdown ${dropdownOpen ? 'open' : ''}`} onClick={handleDropdownClick}>
+                <span className="selected-language">{language}</span>
+                <span className="dropdown-icon">{dropdownOpen ? '⏶' : '⏷'}</span>
+                {dropdownOpen && (
+                    <div className="dropdown-content">
+                        {languages
+                            .filter((lang) => lang !== language)
+                            .map((lang) => (
+                                <div key={lang} onClick={() => handleLanguageChange(lang)}>
+                                    {lang}
+                                </div>
+                            ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

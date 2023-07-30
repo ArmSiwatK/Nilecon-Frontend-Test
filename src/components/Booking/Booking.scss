@@ -17,6 +17,10 @@
       &:hover {
         opacity: 0.5;
       }
+
+      @media only screen and (max-width: 1100px) {
+        margin-left: 10px;
+      }
     }
   }
 
@@ -83,6 +87,10 @@
 
   .booking-step {
     margin: 30px;
+
+    @media only screen and (max-width: 1100px) {
+      display: none;
+    }
   }
 
   .seat-choices {
@@ -140,6 +148,11 @@
       background-image: url("./images/icon-alert-small.png");
       background-repeat: no-repeat;
       background-position: 175px 34px;
+
+      @media only screen and (max-width: 1100px) {
+        padding: 30px 65px;
+        background-position: 34px 34px;
+      }
     }
   }
 

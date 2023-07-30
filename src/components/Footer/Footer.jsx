@@ -20,7 +20,7 @@ const Footer = () => {
     return (
         <footer>
             {isMobile ? (
-                <div></div>
+                <></>
             ) : (
                 <>
                     <img src="./images/bg-tel-footer.png" />

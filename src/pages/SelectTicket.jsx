@@ -4,6 +4,7 @@ import Logo from "../components/Logo/Logo";
 import Navbar from "../components/Navbar/Navbar";
 import Booking from "../components/Booking/Booking";
 import Footer from "../components/Footer/Footer";
+import MenuMobile from "../components/MenuMobile/MenuMobile";
 
 function SelectTicket() {
     return (
@@ -13,6 +14,7 @@ function SelectTicket() {
             <Navbar />
             <Booking />
             <Footer />
+            <MenuMobile />
         </>
     )
 }
