@@ -6,9 +6,11 @@
   width: 100vw;
   transform: translateX(-290px);
   transition: transform 0.3s ease;
+  pointer-events: none;
 
   &.open {
     transform: translateX(0px);
+    pointer-events: initial;
   }
 
   .menu-mobile {
@@ -53,6 +55,7 @@
     position: relative;
     top: 11px;
     left: 14px;
+    pointer-events: initial;
 
     @media only screen and (max-width: 500px) {
       left: 7px;
