@@ -1,5 +1,6 @@
 import React from 'react';
-import Seats from '../../assets/Seats.json';
+import Seats from '../../../assets/Seats.json';
+import "../styles/SeatChoices.scss";
 
 const SeatChoices = ({ seatTypes, seatAmounts, handleSeatAmountChange }) => {
     return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Tooltip } from 'react-tooltip';
-import Seats from '../../assets/Seats.json';
+import Seats from '../../../assets/Seats.json';
+import "../styles/SeatPosition.scss";
 
 const SeatPosition = ({
     selectedSeats,

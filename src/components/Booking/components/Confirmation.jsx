@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { generateRandomSixDigitNumber } from './SeatHelpers';
-import MovieData from '../../assets/MovieData.json';
+import { generateRandomSixDigitNumber } from '../SeatHelpers';
+import MovieData from '../../../assets/MovieData.json';
+import "../styles/Confirmation.scss";
 
 const Confirmation = ({ formattedDate, lastScreenTime, selectedSeatNames, formData, totalPrice }) => {
     const [isMobile, setIsMobile] = useState(false);

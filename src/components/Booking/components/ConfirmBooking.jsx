@@ -1,4 +1,5 @@
 import React from 'react';
+import "../styles/ConfirmBooking.scss";
 
 const ConfirmBooking = ({ nameError, emailError, phoneError, handleInputChange, handleReserveSeats }) => {
     return (

@@ -3,18 +3,18 @@
 */
 
 import React, { useState, useEffect, useContext } from 'react';
-import BookingInfo from './BookingInfo';
-import SeatChoices from './SeatChoices';
-import SeatPosition from './SeatPosition';
-import ConfirmBooking from './ConfirmBooking';
-import Confirmation from './Confirmation';
+import BookingInfo from './components/BookingInfo';
+import SeatChoices from './components/SeatChoices';
+import SeatPosition from './components/SeatPosition';
+import ConfirmBooking from './components/ConfirmBooking';
+import Confirmation from './components/Confirmation';
 import { formattedDate, getAvailableSeatsByType, selectSeats } from './SeatHelpers';
 import { ScreenContext } from '../../ScreenContext';
 import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';
 import MovieData from '../../assets/MovieData.json';
 import Seats from '../../assets/Seats.json';
-import './Booking.scss';
+import './styles/Booking.scss';
 
 /*
 <--------------- Component --------------->

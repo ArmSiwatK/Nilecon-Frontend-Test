@@ -1,6 +1,6 @@
 import React from 'react';
-import MovieData from '../../assets/MovieData.json';
-import './Booking.scss';
+import MovieData from '../../../assets/MovieData.json';
+import "../styles/BookingInfo.scss";
 
 const BookingInfo = ({ lastScreenTime, formattedDate }) => {
     return (

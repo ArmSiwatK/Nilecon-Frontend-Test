@@ -1,0 +1,79 @@
+.booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1024px;
+  margin: auto;
+
+  @media only screen and (max-width: 1100px) {
+    width: initial;
+  }
+
+  .back-button {
+    width: 100%;
+    margin: 30px;
+    border-bottom: solid 1px #7f6e47;
+
+    input {
+      padding: 12px 0;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      @media only screen and (max-width: 1100px) {
+        margin-top: 19px;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .booking-step {
+    margin: 30px;
+
+    @media only screen and (max-width: 1100px) {
+      display: none;
+    }
+  }
+
+  .alert-box {
+    .alert-content {
+      padding: 30px 210px;
+      background-color: #f6eeda;
+      background-image: url("./images/icon-alert-small.png");
+      background-repeat: no-repeat;
+      background-position: 175px 34px;
+
+      @media only screen and (max-width: 1100px) {
+        padding: 30px 65px;
+        background-position: 34px 34px;
+      }
+    }
+  }
+
+  .bottom-button {
+    display: flex;
+    justify-content: center;
+    width: 1024px;
+    height: auto;
+    margin: 70px auto 40px;
+    background-image: url("./images/bg-seat-bottom.png");
+    background-repeat: no-repeat;
+
+    @media only screen and (max-width: 1100px) {
+      width: 100%;
+      background-position: center;
+    }
+
+    input {
+      transition: opacity 0.5s ease;
+      position: relative;
+      top: 20px;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+.confirm-booking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media only screen and (max-width: 500px) {
+    position: relative;
+    bottom: 30px;
+  }
+
+  .confirm-title {
+    text-align: center;
+    margin: 50px 0;
+  }
+
+  .confirm-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .input-container {
+      position: relative;
+
+      .input-box {
+        width: 330px;
+        height: 45px;
+        background-repeat: no-repeat;
+        margin: 10px;
+        border-radius: 4px;
+        text-indent: 56px;
+        font-size: 20px;
+        font-family: "Mongolian Baiti Regular";
+        color: #8e8e8e;
+
+        &::placeholder {
+          font-size: 18px;
+          opacity: 1;
+        }
+
+        &:focus::placeholder {
+          opacity: 0.6;
+        }
+
+        &.invalid {
+          border-color: red;
+        }
+      }
+
+      .error-message {
+        position: absolute;
+        top: -18px;
+        left: 161px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.8);
+        border: 1px solid #8e8e8e;
+        border-radius: 10px;
+        padding: 10px 20px;
+      }
+
+      #name {
+        background-image: url("./images/bg-reserve-input-name.png");
+      }
+
+      #email {
+        background-image: url("./images/bg-reserve-input-email.png");
+      }
+
+      #phone {
+        background-image: url("./images/bg-reserve-input-phone.png");
+      }
+    }
+
+    label {
+      color: #f1e3c2;
+      font-size: 18px;
+      span {
+        margin-left: 6px;
+      }
+    }
+
+    #reserve {
+      margin-top: 20px;
+      transition: opacity 0.5s ease;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+}
