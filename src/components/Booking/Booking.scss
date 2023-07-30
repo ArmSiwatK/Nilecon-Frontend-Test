@@ -5,6 +5,10 @@
   width: 1024px;
   margin: auto;
 
+  @media only screen and (max-width: 1100px) {
+    width: initial;
+  }
+
   .back-button {
     width: 100%;
     margin: 30px;
@@ -19,6 +23,7 @@
       }
 
       @media only screen and (max-width: 1100px) {
+        margin-top: 19px;
         margin-left: 10px;
       }
     }
@@ -30,6 +35,12 @@
     gap: 30px;
     width: 100%;
 
+    @media only screen and (max-width: 1100px) {
+      justify-content: center;
+      align-items: flex-start;
+      gap: 7%;
+    }
+
     .movie-cover {
       background-image: url("./images/movie-cover-background.png");
       background-repeat: no-repeat;
@@ -40,6 +51,10 @@
       display: flex;
       flex-direction: column;
       gap: 30px;
+
+      @media only screen and (max-width: 1100px) {
+        gap: 10px;
+      }
 
       .movie-name {
         font-size: 24px;
@@ -67,13 +82,29 @@
         font-size: 18px;
         color: #f1e3c2;
 
+        @media only screen and (max-width: 700px) {
+          grid-template-columns: repeat(1, 1fr);
+        }
+
         .movie-details-cell {
           padding: 12px 60px;
           background-color: #101010;
           border: 1px solid #3e3e3e;
 
+          @media only screen and (max-width: 1100px) {
+            padding: 12px 12px;
+          }
+
+          @media only screen and (max-width: 700px) {
+            padding: 6px 6px;
+          }
+
           &:not(:last-child) {
             border-right: none;
+
+            @media only screen and (max-width: 1100px) {
+              border-right: 1px solid #3e3e3e;
+            }
           }
 
           span {
@@ -96,12 +127,15 @@
   .seat-choices {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     width: 100%;
+    margin-top: 20px;
 
     .seat-info {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 20px 0 20px;
 
       .seat-image {
         margin-bottom: 10px;
@@ -328,6 +362,11 @@
     margin: 70px auto 40px;
     background-image: url("./images/bg-seat-bottom.png");
     background-repeat: no-repeat;
+
+    @media only screen and (max-width: 1100px) {
+      width: 100%;
+      background-position: center;
+    }
 
     input {
       transition: opacity 0.5s ease;
