@@ -2,6 +2,7 @@
   {
     "name": "Large Day Bed",
     "profile": "./images/seat-daybed-large.png",
+    "preview": "./images/daybed-large.jpg",
     "position": [
       {
         "side": "left",
@@ -26,6 +27,7 @@
   {
     "name": "Day Bed",
     "profile": "./images/seat-daybed.png",
+    "preview": "./images/daybed.jpg",
     "position": [
       {
         "side": "left",

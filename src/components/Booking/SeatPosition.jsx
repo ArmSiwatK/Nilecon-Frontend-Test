@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { Tooltip } from 'react-tooltip';
 import Seats from '../../assets/Seats.json';
 
 const SeatPosition = ({
@@ -33,7 +35,12 @@ const SeatPosition = ({
                                 const rightSeatName = `${alphabet}${rightSeatNumber}`;
 
                                 return (
-                                    <div key={seatIndex} className={`seat-pair ${selectedSeats.includes(`${rowIndex}-${seatIndex}`) ? "selected" : ""}`}>
+                                    <div
+                                        key={seatIndex}
+                                        className={`seat-pair ${selectedSeats.includes(`${rowIndex}-${seatIndex}`) ? "selected" : ""}`}
+                                        data-tooltip-id="preview-box"
+                                        data-tooltip-html={ReactDOMServer.renderToStaticMarkup(<img src={seatData.preview} />)}
+                                    >
                                         <div className="seat" onClick={() => handleSeatSelection(rowIndex, seatIndex)}>
                                             <img
                                                 src={
@@ -72,6 +79,7 @@ const SeatPosition = ({
                             </div>
                         </div>
                     ))}
+                <Tooltip id="preview-box" />
             </div>
             <div className="seat-summary">
                 {seatTypes.map((seatType, index) => {

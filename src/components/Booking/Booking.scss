@@ -273,6 +273,16 @@
           }
         }
       }
+
+      #preview-box {
+        padding: 4px 4px;
+        background-color: #ddaf7f;
+        transition: opacity 1s ease;
+      }
+
+      #preview-box.show {
+        opacity: 1;
+      }
     }
 
     .seat-summary {

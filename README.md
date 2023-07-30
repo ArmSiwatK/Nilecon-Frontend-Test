@@ -1,8 +1,38 @@
-# React + Vite
+## Installation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Clone the repository:
 
-Currently, two official plugins are available:
+```
+git clone https://github.com/ArmSiwatK/Nilecon-Frontend-Test.git
+cd Nilecon-Frontend-Test
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Install the project dependencies:
+
+```
+npm install
+```
+
+or
+
+```
+yarn install
+```
+
+## Development
+
+To start the development server and run the project locally, use the following commands:
+
+```
+npm run dev
+```
+
+or
+
+```
+yarn dev
+```
+
+## Notes
+
+- The seat selection component currently only accommodates two-seat selection – that is, it currently always assumes a selection is two seats, as I realized too late that there are, in fact, single seats available for reservation. I believe, however, that accommodating other halls is beyond the requirements of this mockup.
