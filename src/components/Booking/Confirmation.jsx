@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { generateRandomSixDigitNumber } from './SeatHelpers';
 import MovieData from '../../assets/MovieData.json';
 
 const Confirmation = ({ formattedDate, lastScreenTime, selectedSeatNames, formData, totalPrice }) => {
+    const [isMobile, setIsMobile] = useState(false);
+
     const bookingNo = generateRandomSixDigitNumber();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 800);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <div className="confirmation">
@@ -11,14 +26,21 @@ const Confirmation = ({ formattedDate, lastScreenTime, selectedSeatNames, formDa
                 <img src="./images/booking-completed.png" />
             </div>
             <div className="confirm-movie-info">
-                <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
+                {!isMobile && (
+                    <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
+                )}
                 <div className="movie-info">
                     <div className="movie-information">
-                        <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
-                        <div className="movie-info-icons">
-                            <img className="movie-rating" src="./images/rate-general.png" />
-                            <img className="clock-movie-type" src="./images/type-digital.png" />
-                            <div className="movie-type">{MovieData.movieType}</div>
+                        {isMobile && (
+                            <img className="movie-cover" src={MovieData.movieCover} alt={MovieData.movieName} />
+                        )}
+                        <div className="movie-information-wrapper">
+                            <div className="movie-name">{MovieData.movieName.toUpperCase()}</div>
+                            <div className="movie-info-icons">
+                                <img className="movie-rating" src="./images/rate-general.png" />
+                                <img className="clock-movie-type" src="./images/type-digital.png" />
+                                <div className="movie-type">{MovieData.movieType}</div>
+                            </div>
                         </div>
                     </div>
                     <div className="movie-details">
