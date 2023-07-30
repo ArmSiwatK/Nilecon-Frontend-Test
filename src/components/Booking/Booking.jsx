@@ -8,7 +8,7 @@ import SeatChoices from './components/SeatChoices';
 import SeatPosition from './components/SeatPosition';
 import ConfirmBooking from './components/ConfirmBooking';
 import Confirmation from './components/Confirmation';
-import { formattedDate, getAvailableSeatsByType, selectSeats } from './SeatHelpers';
+import { formattedDate, getAvailableSeatsByType, selectSeats } from './BookingHelpers';
 import { ScreenContext } from '../../ScreenContext';
 import AlertBox from '../AlertBox/AlertBox';
 import Halls from '../../assets/Halls.json';

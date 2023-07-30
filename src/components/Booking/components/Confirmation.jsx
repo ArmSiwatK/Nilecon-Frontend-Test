@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { generateRandomSixDigitNumber } from '../SeatHelpers';
+import { generateRandomSixDigitNumber } from '../BookingHelpers';
 import MovieData from '../../../assets/MovieData.json';
 import "../styles/Confirmation.scss";
 
