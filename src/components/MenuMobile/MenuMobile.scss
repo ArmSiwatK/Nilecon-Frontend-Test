@@ -7,6 +7,7 @@
   transform: translateX(-290px);
   transition: transform 0.3s ease;
   pointer-events: none;
+  z-index: 2;
 
   &.open {
     transform: translateX(0px);

@@ -12,7 +12,9 @@ header {
     padding: 6px 0;
     border-bottom: none;
     background-color: black;
-    position: relative;
+    position: fixed;
+    width: 100vw;
+    z-index: 2;
 
     .mobile-logo {
       display: flex;
