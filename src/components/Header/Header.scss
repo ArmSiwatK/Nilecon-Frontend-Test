@@ -12,6 +12,7 @@ header {
     padding: 6px 0;
     border-bottom: none;
     background-color: black;
+    position: relative;
 
     .mobile-logo {
       display: flex;
@@ -26,6 +27,13 @@ header {
           opacity: 0.8;
         }
       }
+    }
+
+    .phone-button {
+      width: 26px;
+      height: 26px;
+      position: absolute;
+      right: 10px;
     }
   }
 

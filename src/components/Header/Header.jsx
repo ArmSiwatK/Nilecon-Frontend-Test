@@ -24,6 +24,9 @@ const Header = () => {
                     <a className="mobile-logo" href="https://www.embassycineplex.com/home">
                         <img src="./images/logo-mobile.svg" alt="Logo" />
                     </a>
+                    <a className="phone-button">
+                        <img src="./images/btn-tel.svg" alt="Phone Button" />
+                    </a>
                 </header>
             ) : (
                 <header>
