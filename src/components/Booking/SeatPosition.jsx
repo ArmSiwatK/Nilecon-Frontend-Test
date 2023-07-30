@@ -11,7 +11,7 @@ const SeatPosition = ({
 }) => {
     return (
         <div className="seat-position">
-            <img src="./images/theater-screen.png" />
+            <img className="theater-screen" src="./images/theater-screen.png" />
             <div className="seat-set">
                 {hallData &&
                     hallData.seatLayout.map((row, rowIndex) => (
