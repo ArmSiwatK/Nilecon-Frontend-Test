@@ -12,7 +12,6 @@ const MenuMobile = () => {
         setIsMenuOpen((prevState) => !prevState);
     };
 
-
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 1100);
@@ -30,7 +29,7 @@ const MenuMobile = () => {
         };
     }, []);
 
-    return (
+    return isMobile ? (
         <div className={`menu-mobile-wrapper${isMenuOpen ? ' open' : ''}`}>
             <div className="menu-mobile">
                 <a href="https://www.embassycineplex.com/home" target="_blank" rel="noopener noreferrer">
@@ -52,7 +51,7 @@ const MenuMobile = () => {
                 <img src="./images/btn-mobile-sidemenu.svg" alt="Side Menu Button" />
             </div>
         </div>
-    );
+    ) : null;
 };
 
 export default MenuMobile;
