@@ -4,10 +4,11 @@
   top: 0;
   left: 0;
   width: 100vw;
+  transform: translateX(-290px);
   transition: transform 0.3s ease;
 
   &.open {
-    transform: translateX(-290px);
+    transform: translateX(0px);
   }
 
   .menu-mobile {
